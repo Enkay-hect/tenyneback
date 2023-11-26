@@ -39,7 +39,9 @@ class generalContentController extends Controller
    {
        $data = generalContents::all();
 
-        return  response()->json([$data]);
+        return  response()->json([
+            'content'=>$data
+        ]);
 
 
    }

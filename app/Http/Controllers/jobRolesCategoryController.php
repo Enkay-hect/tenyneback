@@ -70,7 +70,9 @@ class jobRolesCategoryController extends Controller
                  $role =   jobRole::create([
                         'role'  => $data['role'],
                         'title' => $data['title'],
-                        'image' => $fileName,
+                        'image' => $fileName
+
+                        //->getClientOriginalExtension(),
 
                     ])
                 ];
@@ -86,12 +88,68 @@ class jobRolesCategoryController extends Controller
         {
             $data = jobRoleCategory::with(['jobRoles'])->get();
 
-            //with('job_role_categories');
-               return  response()->json([
-               "categories" => $data
+            $formattedCategories = $data->map(function ($jobCategory){
+                return [
+
+                        "id"=> $jobCategory->id,
+                        "name"=> $jobCategory->name,
+                        "created_at"=> $jobCategory->created_at,
+                        "updated_at" => $jobCategory->updated_at,
+                        "job_roles" => $jobCategory->jobRoles->map(function ($jobRole) {
+                            return [
+
+                                "id"=> $jobRole->id,
+                                "title" => $jobRole->title,
+                                "image"=> asset('storage/images/' . $jobRole->image),
+                                "created_at"=> $jobRole->created_at,
+                                "updated_at"=> $jobRole->updated_at,
+
+                                "pivot"=> [
+
+                                    "job_category_id"=> $jobRole->pivot->job_category_id,
+                                    "job_role_id"=> $jobRole->pivot->job_role_id
+                                ]
+
+                            ];
+                    })
+                ];
+            });
+
+            return response()->json([
+                'categories' => $formattedCategories
             ]);
+
+            //with('job_role_categories');
+            //    return  response()->json([
+            //    "categories" =>  $data,
+            // //    'image' => asset('storage/' . $data->image)
+
+            // ]);
         }
 
 
 
 }
+
+
+// "categories": [
+//     {
+//         "id"=> $jobCategory->id,
+//         "name"=> $jobCategory->name,
+//         "created_at"=> $jobCategory->created_at,
+//         "updated_at" => $jobCategory->updated_at,
+//         "job_roles": [
+//             {
+//                 "id"=> $jobCategory->id,
+//                 "title"=> $jobCategory->title,
+//                 "image"=> asset('storage/images/' . $jobCategory->image),
+//                 "created_at"=> $jobCategory->created_at,
+//                 "updated_at"=> $jobCategory->updated_at,
+//                 "pivot": {
+//                     "job_category_id"=> $jobCategory->1,
+//                     "job_role_id"=> $jobCategory->1
+//                 }
+//             }
+//         ]
+//     }
+// ]

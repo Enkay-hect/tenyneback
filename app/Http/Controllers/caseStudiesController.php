@@ -43,6 +43,34 @@ class caseStudiesController extends Controller
 
     public function getcasestudy(){
         $data = caseStudy::all();
-        return  response()->json([$data]);
+
+        $formattedCasestudies = $data->map(function ($casestudy) {
+            return [
+                "id" => $casestudy->id,
+                "image" => asset('storage/images/' . $casestudy->image),
+                "title" => $casestudy->title,
+                "description" => $casestudy->description,
+                "created_at" => $casestudy->created_at,
+                "updated_at" => $casestudy->updated_at
+            ];
+        });
+
+        return response()->json([
+            'casestudy' => $formattedCasestudies
+        ]);
+        // return  response()->json(
+
+        //     [
+        //             // 'casestudy'=> $data,
+        //             'casestudy' => [
+        //                 "id"=> $data->id,
+        //                 "image"=> asset('storage/images/' . $data->image),
+        //                 "title"=> $data->title,
+        //                 "description"=> $data->description,
+        //                 "created_at"=> $data->created_at,
+        //                 "updated_at"=> $data->updated_at
+        //                 ]
+        //         ]
+        // );
     }
 }
