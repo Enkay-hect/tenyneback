@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jobPivot;
 use App\Models\jobRole;
 use App\Models\jobRoleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class jobRolesCategoryController extends Controller
@@ -118,38 +116,7 @@ class jobRolesCategoryController extends Controller
             return response()->json([
                 'categories' => $formattedCategories
             ]);
-
-            //with('job_role_categories');
-            //    return  response()->json([
-            //    "categories" =>  $data,
-            // //    'image' => asset('storage/' . $data->image)
-
-            // ]);
         }
-
-
-
 }
 
 
-// "categories": [
-//     {
-//         "id"=> $jobCategory->id,
-//         "name"=> $jobCategory->name,
-//         "created_at"=> $jobCategory->created_at,
-//         "updated_at" => $jobCategory->updated_at,
-//         "job_roles": [
-//             {
-//                 "id"=> $jobCategory->id,
-//                 "title"=> $jobCategory->title,
-//                 "image"=> asset('storage/images/' . $jobCategory->image),
-//                 "created_at"=> $jobCategory->created_at,
-//                 "updated_at"=> $jobCategory->updated_at,
-//                 "pivot": {
-//                     "job_category_id"=> $jobCategory->1,
-//                     "job_role_id"=> $jobCategory->1
-//                 }
-//             }
-//         ]
-//     }
-// ]
