@@ -58,19 +58,6 @@ class caseStudiesController extends Controller
         return response()->json([
             'casestudy' => $formattedCasestudies
         ]);
-        // return  response()->json(
-
-        //     [
-        //             // 'casestudy'=> $data,
-        //             'casestudy' => [
-        //                 "id"=> $data->id,
-        //                 "image"=> asset('storage/images/' . $data->image),
-        //                 "title"=> $data->title,
-        //                 "description"=> $data->description,
-        //                 "created_at"=> $data->created_at,
-        //                 "updated_at"=> $data->updated_at
-        //                 ]
-        //         ]
-        // );
+     
     }
 }
