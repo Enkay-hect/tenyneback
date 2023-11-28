@@ -16,8 +16,8 @@ class Programs extends Model
      * @return response()
      */
     protected $fillable = [
-        'title', 'image', 'rating', 'reviews', 'subtitle', 'description', 'features', 'start_date',
-        'end_date', 'price', 'learning_scheme', 'why', 'prerequisite', 'best-fit', 'program_flow'
+        'programTitle', 'image', 'rating', 'reviews', 'subtitle', 'description', 'features', 'start_date',
+        'end_date', 'price', 'learning_scheme', 'why', 'prerequisite', 'best_fit', 'program_flow'
     ];
 
     protected $casts = [
@@ -36,6 +36,8 @@ class Programs extends Model
             'program_categories_pivot',
     'programs_id',
     'program_categories_id',
-        )->using(ProgramInstructors::class);
+        )->withTimestamps();
+
+        // ->using(ProgramInstructors::class)
     }
 }

@@ -25,7 +25,7 @@ class PlanFeature extends Model
             'plan_feature_pivot',
     'plan_feature_id',
     'plan_id'
-        );
+        )->withTimestamps();
     }
 
 

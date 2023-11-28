@@ -17,7 +17,7 @@ class ProgramInstructors extends Model
      * @return response()
      */
     protected $fillable = [
-        'name', 'details'
+        'instructor_name', 'instructor_details'
     ];
 
 
@@ -28,8 +28,7 @@ class ProgramInstructors extends Model
             'program_instructors_pivot',
             'program_instructors_id',
     'programs_id',
-
-        );
+        )->withTimestamps();
     }
 
 }

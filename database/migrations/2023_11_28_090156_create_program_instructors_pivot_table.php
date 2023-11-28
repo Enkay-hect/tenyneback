@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('program_instructors_pivot', function (Blueprint $table) {
+            $table->id();
             $table->string('programs_id')->index();
             $table->string('program_instructors_id')->index();
+
             $table->timestamps();
 
             $table->foreign('programs_id')->references('id')->on('programs');

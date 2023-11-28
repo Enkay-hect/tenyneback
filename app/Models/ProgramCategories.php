@@ -26,6 +26,6 @@ class ProgramCategories extends Model
             'program_categories_pivot',
             'program_categories_id',
             'programs_id'
-        );
+        )->withTimestamps();
     }
 }

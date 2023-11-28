@@ -39,6 +39,6 @@ class plans extends Model
             'plan_feature_pivot',
     'plan_id',
     'plan_feature_id'
-        );
+        )->withTimestamps();
     }
 }
