@@ -65,45 +65,45 @@ class ProgramCategoriesController extends Controller
         if($findProgramCategory = ProgramCategories::where(['title' => $data['title']])->first()){
             $findProgramCategoryId = ProgramCategories::find($findProgramCategory)->first();
 
-                if($findProgram = Programs::where(['programTitle' => $data['programTitle']])->first()){
-                    $findProgramId = Programs::find($findProgram)->first();
+            if($findProgram = Programs::where(['programTitle' => $data['programTitle']])->first()){
+                $findProgramId = Programs::find($findProgram)->first();
 
-                            $inst = ProgramInstructors::create([
-                                'instructor_name'         => $data['instructor_name'],
-                                'instructor_details'      => $data['instructor_details'],
-                            ]);
+                        $inst = ProgramInstructors::create([
+                            'instructor_name'         => $data['instructor_name'],
+                            'instructor_details'      => $data['instructor_details'],
+                        ]);
 
-                $inst->Programs()->attach($findProgramId);
+                        $inst->Programs()->attach($findProgramId);
 
             } else {
 
-                [
-                    $prog = Programs::create([
-                        'programTitle'     => $data['programTitle'],
-                        'image'            => $fileName,
-                        'rating'           => $data['rating'],
-                        'reviews'          => $data['reviews'],
-                        'subtitle'         => $data['subtitle'],
-                        'description'      => $data['description'],
-                        'features'         => $data['features'],
-                        'start_date'       => $data['start_date'],
-                        'end_date'         => $data['end_date'],
-                        'price'            => $data['price'],
-                        'learning_scheme'  => $data['learning_scheme'],
-                        'why'              => $data['why'],
-                        'prerequisite'     => $data['prerequisite'],
-                        'best_fit'         => $data['best_fit'],
-                        'program_flow'     => $data['program_flow'],
-                    ]),
+                    [
+                        $prog = Programs::create([
+                            'programTitle'     => $data['programTitle'],
+                            'image'            => $fileName,
+                            'rating'           => $data['rating'],
+                            'reviews'          => $data['reviews'],
+                            'subtitle'         => $data['subtitle'],
+                            'description'      => $data['description'],
+                            'features'         => $data['features'],
+                            'start_date'       => $data['start_date'],
+                            'end_date'         => $data['end_date'],
+                            'price'            => $data['price'],
+                            'learning_scheme'  => $data['learning_scheme'],
+                            'why'              => $data['why'],
+                            'prerequisite'     => $data['prerequisite'],
+                            'best_fit'         => $data['best_fit'],
+                            'program_flow'     => $data['program_flow'],
+                        ]),
 
-                    $inst = ProgramInstructors::create([
-                        'instructor_name'         => $data['instructor_name'],
-                        'instructor_details'      => $data['instructor_details'],
-                    ])
-                ];
+                        $inst = ProgramInstructors::create([
+                            'instructor_name'         => $data['instructor_name'],
+                            'instructor_details'      => $data['instructor_details'],
+                        ])
+                    ];
 
-                $prog->ProgramCategories()->attach($findProgramCategoryId);
-                $inst->Programs()->attach($prog);
+                    $prog->ProgramCategories()->attach($findProgramCategoryId);
+                    $inst->Programs()->attach($prog);
             }
 
         } else {
