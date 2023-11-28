@@ -13,10 +13,8 @@ class ProgramCategoriesController extends Controller
         public function createprogramcategory(Request $request){
 
             $data = Validator::make($request->all(),[
-
                 //programsCategories
                 'title'            => 'string',
-
 
                 //programs
                 'programTitle'     => 'string',
@@ -54,10 +52,10 @@ class ProgramCategoriesController extends Controller
             $this->create($data, $fileName);
 
 
-        return response()->json([
-            'data' => $data,
-            'file' => $fileName
-        ],200);
+            return response()->json([
+                'data' => $data,
+                'file' => $fileName
+            ],200);
     }
 
 
@@ -151,7 +149,7 @@ class ProgramCategoriesController extends Controller
         $data = ProgramCategories::with(['programs'])->get();
 
         $formattedCategories = $data->map(function($programCategory){
-            return [
+            return  [
                         "id"=> $programCategory->id,
                         "name"=> $programCategory->title,
                         "created_at"=> $programCategory->created_at,
@@ -176,11 +174,11 @@ class ProgramCategoriesController extends Controller
                                     'best_fit'         => $programs->best_fit,
                                     'program_flow'     => $programs->program_flow,
 
-                                    "pivot"=> [
+                                    // "pivot"=> [
 
-                                        "program_id"=> $programs->pivot->programs_id,
-                                        "program_categories_id"=> $programs->pivot->program_categories_id
-                                    ],
+                                    //     "program_id"=> $programs->pivot->programs_id,
+                                    //     "program_categories_id"=> $programs->pivot->program_categories_id
+                                    // ],
 
                                     'instructors' => $programs->instructors->map(function ($instructor) {
                                         return [
