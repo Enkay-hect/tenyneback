@@ -75,8 +75,8 @@ class ProgramCategoriesController extends Controller
 
                         $inst->Programs()->attach($findProgramId);
 
-            } else {
-
+            } else
+                {
                     [
                         $prog = Programs::create([
                             'programTitle'     => $data['programTitle'],
@@ -104,9 +104,10 @@ class ProgramCategoriesController extends Controller
 
                     $prog->ProgramCategories()->attach($findProgramCategoryId);
                     $inst->Programs()->attach($prog);
-            }
+                }
 
-        } else {
+        } else
+            {
             [
                 $cat =  ProgramCategories::create([
                         'title' => $data['title']
@@ -143,4 +144,65 @@ class ProgramCategoriesController extends Controller
         }
     }
 
+
+
+
+    public function getprogram(){
+        $data = ProgramCategories::with(['programs'])->get();
+
+        $formattedCategories = $data->map(function($programCategory){
+            return [
+                        "id"=> $programCategory->id,
+                        "name"=> $programCategory->title,
+                        "created_at"=> $programCategory->created_at,
+                        "updated_at" => $programCategory->updated_at,
+                        'programs' => $programCategory->programs->map(function($programs){
+
+                                return [
+                                    'id'               => $programs->id,
+                                    'programTitle'     => $programs->programTitle,
+                                    'image'            => asset('storage/images/' . $programs->image),
+                                    'rating'           => $programs->rating,
+                                    'reviews'          => $programs->reviews,
+                                    'subtitle'         => $programs->subtitle,
+                                    'description'      => $programs->description,
+                                    'features'         => $programs->features,
+                                    'start_date'       => $programs->start_date,
+                                    'end_date'         => $programs->end_date,
+                                    'price'            => $programs->price,
+                                    'learning_scheme'  => $programs->learning_scheme,
+                                    'why'              => $programs->why,
+                                    'prerequisite'     => $programs->prerequisite,
+                                    'best_fit'         => $programs->best_fit,
+                                    'program_flow'     => $programs->program_flow,
+
+                                    "pivot"=> [
+
+                                        "program_id"=> $programs->pivot->programs_id,
+                                        "program_categories_id"=> $programs->pivot->program_categories_id
+                                    ],
+
+                                    'instructors' => $programs->instructors->map(function ($instructor) {
+                                        return [
+                                            'name' => $instructor->instructor_name,
+                                            'details' => $instructor->instructor_details,
+                                        ];
+                                    }),
+
+                                ];
+                        })
+
+            ];
+        });
+
+
+        return response([
+            'program_categories' => $formattedCategories
+        ]);
+    }
+
 }
+
+
+
+

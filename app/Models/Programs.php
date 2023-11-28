@@ -36,6 +36,20 @@ class Programs extends Model
             'program_categories_pivot',
     'programs_id',
     'program_categories_id',
+
+        )->withTimestamps();
+
+    }
+
+
+    public function instructors(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            ProgramInstructors::class,
+            'program_instructors_pivot',
+    'programs_id',
+    'program_instructors_id',
+
         )->withTimestamps();
 
         // ->using(ProgramInstructors::class)

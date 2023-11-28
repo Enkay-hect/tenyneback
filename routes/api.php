@@ -40,4 +40,8 @@ Route::post('/createjobcategory', [jobRolesCategoryController::class, 'createJob
 Route::get('/getjobcategory', [jobRolesCategoryController::class, 'getjobcategory'])->name('getjobcategory');
 
 Route::post('/createprogramcategory', [ProgramCategoriesController::class, 'createprogramcategory'])->name('createprogramcategory');
+Route::get('/getprogram', [ProgramCategoriesController::class, 'getprogram'])->name('getprogram');
+
+
+
 
