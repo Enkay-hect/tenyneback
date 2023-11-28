@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_pivot', function (Blueprint $table) {
+        Schema::create('program_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_role_id')->index();
-            $table->foreignId('job_category_id')->index();
+            $table->string('title')->unique();
             $table->timestamps();
-
-            $table->foreign('job_role_id')->references('id')->on('job_roles');
-            $table->foreign('job_category_id')->references('id')->on('job_role_categories');
-
-        }); 
+        });
     }
 
     /**
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_pivot');
+        Schema::dropIfExists('program_categories');
     }
 };

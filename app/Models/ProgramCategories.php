@@ -5,31 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
-
-
-class jobRoleCategory extends Model
+class ProgramCategories extends Model
 {
     use HasFactory;
 
-        /**
+         /**
      * Write code on Method
      *
      * @return response()
      */
     protected $fillable = [
-        'name',
+        'title',
     ];
 
-    public function jobRoles():BelongsToMany
+    public function programs(): BelongsToMany
     {
         return $this->belongsToMany(
-            jobRole::class,
-            'job_pivot',
-            'job_category_id',
-            'job_role_id',
+            Programs::class,
+            'program_categories_pivot',
+            'program_categories_id',
+            'programs_id'
         );
-    } 
-
+    }
 }

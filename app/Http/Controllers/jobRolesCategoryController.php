@@ -69,18 +69,12 @@ class jobRolesCategoryController extends Controller
                         'role'  => $data['role'],
                         'title' => $data['title'],
                         'image' => $fileName
-
-                        //->getClientOriginalExtension(),
-
                     ])
                 ];
-
               $cat->jobRoles()->attach($role);
         }
-
     }
-
-
+    
 
    public function getjobcategory()
         {
@@ -94,6 +88,7 @@ class jobRolesCategoryController extends Controller
                         "created_at"=> $jobCategory->created_at,
                         "updated_at" => $jobCategory->updated_at,
                         "job_roles" => $jobCategory->jobRoles->map(function ($jobRole) {
+
                             return [
 
                                 "id"=> $jobRole->id,
