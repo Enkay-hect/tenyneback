@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('program_categories_pivot', function (Blueprint $table) {
             $table->id();
-            $table->string('programs_id')->index();
-            $table->string('program_categories_id')->index();
+            $table->foreignId('programs_id')->index();
+            $table->foreignId('program_categories_id')->index();
 
-            $table->timestamps(); 
+            $table->timestamps();
 
             $table->foreign('programs_id')->references('id')->on('programs')->onDelete('cascade');
             $table->foreign('program_categories_id')->references('id')->on('program_categories')->onDelete('cascade');
