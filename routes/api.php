@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\caseStudiesController;
 use App\Http\Controllers\generalContentController;
+use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\jobRolesCategoryController;
 use App\Http\Controllers\plansController;
 use App\Http\Controllers\ProgramCategoriesController;
+use App\Http\Controllers\ProgramsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +42,14 @@ Route::post('/createjobcategory', [jobRolesCategoryController::class, 'createJob
 Route::get('/getjobcategory', [jobRolesCategoryController::class, 'getjobcategory'])->name('getjobcategory');
 
 Route::post('/createprogramcategory', [ProgramCategoriesController::class, 'createprogramcategory'])->name('createprogramcategory');
+
+
+Route::post('/createprogram', [ProgramsController::class, 'createprogram'])->name('createprogram');
 Route::get('/getprogram', [ProgramCategoriesController::class, 'getprogram'])->name('getprogram');
+
+
+Route::post('/createinstructor', [InstructorsController::class, 'createinstructor'])->name('createinstructor');
+
 
 
 
