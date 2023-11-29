@@ -17,21 +17,18 @@ class ProgramCategoriesController extends Controller
 
             ]);
 
-
-            if($data->fails()){
-                return response()->json([
-                    "message" => $data->messages()
-                ],400);
-            }
-
+                    if($data->fails()){
+                        return response()->json([
+                            "message" => $data->messages()
+                        ],400);
+                    }
 
             $data = $request->post();
             $this->create($data);
 
-
-            return response()->json([
-                'data' => $data,
-            ],200);
+                return response()->json([
+                    'data' => $data,
+                ],200);
     }
 
 
@@ -39,15 +36,12 @@ class ProgramCategoriesController extends Controller
             ProgramCategories::create([
                         'title' => $data['title']
             ]);
-
     }
- 
 
 
 
     public function getprogram(){
         $data = Programs::with(['ProgramCategories', 'instructors'])->get();
-
 
         return response([
             // 'program_categories' => $formattedCategories

@@ -62,6 +62,7 @@ class JobsRoleController extends Controller
         ]);
     }
 
+        //                             'image'            => asset('storage/images/' . $programs->image),
 
 
 

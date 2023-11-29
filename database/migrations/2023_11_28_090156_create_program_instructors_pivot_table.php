@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('program_instructors_pivot', function (Blueprint $table) {
             $table->id();
-            $table->string('programs_id')->index();
-            $table->string('program_instructors_id')->index();
+            $table->foreignId('programs_id')->index();
+            $table->foreignId('program_instructors_id')->index();
 
             $table->timestamps();
 
