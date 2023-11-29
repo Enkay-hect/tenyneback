@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('subtitle');
             $table->string('description');
             $table->string('features');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('price');
             $table->string('learning_scheme');
             $table->string('why');
