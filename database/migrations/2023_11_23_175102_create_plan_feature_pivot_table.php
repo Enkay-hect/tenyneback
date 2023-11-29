@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('plan_feature_id');
             $table->timestamps();
 
-            $table->foreign('plan_id')->references('id')->on('plans');
-            $table->foreign('plan_feature_id')->references('id')->on('plan_features');
+            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreign('plan_feature_id')->references('id')->on('plan_features')->onDelete('cascade');
 
         });
     }

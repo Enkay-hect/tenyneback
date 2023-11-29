@@ -17,10 +17,9 @@ return new class extends Migration
             $table->foreignId('job_category_id')->index();
             $table->timestamps();
 
-            $table->foreign('job_role_id')->references('id')->on('job_roles');
-            $table->foreign('job_category_id')->references('id')->on('job_role_categories');
-
-        }); 
+            $table->foreign('job_role_id')->references('id')->on('job_roles')->onDelete('cascade');
+            $table->foreign('job_category_id')->references('id')->on('job_role_categories')->onDelete('cascade');
+        });
     }
 
     /**

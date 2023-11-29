@@ -4,6 +4,8 @@ use App\Http\Controllers\caseStudiesController;
 use App\Http\Controllers\generalContentController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\jobRolesCategoryController;
+use App\Http\Controllers\jobRoleController;
+use App\Http\Controllers\JobsRoleController;
 use App\Http\Controllers\plansController;
 use App\Http\Controllers\ProgramCategoriesController;
 use App\Http\Controllers\ProgramsController;
@@ -39,7 +41,10 @@ Route::get('/getcontent', [generalContentController::class, 'getcontent'])->name
 
 
 Route::post('/createjobcategory', [jobRolesCategoryController::class, 'createJobCategory'])->name('createJobCategory');
-Route::get('/getjobcategory', [jobRolesCategoryController::class, 'getjobcategory'])->name('getjobcategory');
+Route::post('/createjobrole', [JobsRoleController::class, 'createjobrole'])->name('createjobrole');
+Route::get('/getjobrole', [JobsRoleController::class, 'getjobrole'])->name('getjobrole');
+Route::delete('/deletejobrole/{id}', [JobsRoleController::class, 'deletejobrole'])->name('deletejobrole');
+
 
 Route::post('/createprogramcategory', [ProgramCategoriesController::class, 'createprogramcategory'])->name('createprogramcategory');
 

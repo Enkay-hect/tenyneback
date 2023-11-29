@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign('programs_id')->references('id')->on('programs');
-            $table->foreign('program_instructors_id')->references('id')->on('program_instructors');
+            $table->foreign('programs_id')->references('id')->on('programs')->onDelete('cascade');
+            $table->foreign('program_instructors_id')->references('id')->on('program_instructors')->onDelete('cascade');
 
         });
     }
