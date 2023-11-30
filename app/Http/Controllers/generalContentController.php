@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\generalContents;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class generalContentController extends Controller
 {
@@ -45,4 +46,52 @@ class generalContentController extends Controller
 
 
    }
+
+
+
+   public function updatecontent(Request $request, $id){
+    $data = Validator::make($request->all(), [
+                 'name' => 'required|string',
+                 'description' => 'required|string',
+                 'comment' => 'string'
+    ]);
+
+    if ($data->fails()) {
+        return response()->json(['errors' => $data->errors()], 422);
+    }
+
+    $foundContent = generalContents::find($id);
+
+    if (!$foundContent) {
+        return response()->json(['error' => 'Not found'], 404);
+    }
+
+    $foundContent->update([
+        'name' => $request->input('name'),
+        'description' => $request->input('description'),
+        'comment' => $request->input('comment'),
+
+    ]);
+
+    return response()->json(['message' => 'Updated successfully']);
+
+
+}
+
+
+
+public function deletecontent($id){
+
+    $foundContent = generalContents::where(['id' => $id])->first();
+
+    if (!$foundContent) {
+        return response()->json(['error' => 'Not found'], 404);
+    }
+
+    $foundContent->delete();
+
+    return response()->json(['message' => 'Plan deleted']);
+
+}
+
 }

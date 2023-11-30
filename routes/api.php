@@ -29,14 +29,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/createplan', [plansController::class, 'createPlan'])->name('createPlan');
 Route::post('/addplanfeature', [plansController::class, 'addPlanFeature'])->name('addPlanFeature');
 Route::get('/getplan', [plansController::class, 'getplan'])->name('getplan');
+Route::post('/updateplan/{id}', [plansController::class, 'updateplan'])->name('updateplan');
+Route::delete('/deleteplan/{id}', [plansController::class, 'deleteplan'])->name('deleteplan');
+
 
 
 Route::post('/createcasestudy', [caseStudiesController::class, 'createCaseStudy'])->name('createCaseStudy');
 Route::get('/getcasestudy', [caseStudiesController::class, 'getcasestudy'])->name('getcasestudy');
+Route::post('/updatecasestudy/{id}', [caseStudiesController::class, 'updatecasestudy'])->name('updatecasestudy');
+Route::delete('/deletecasestudy/{id}', [caseStudiesController::class, 'deletecasestudy'])->name('deletecasestudy');
+
 
 
 Route::post('/creategeneralcontent', [generalContentController::class, 'createGeneralContent'])->name('createGeneralContent');
 Route::get('/getcontent', [generalContentController::class, 'getcontent'])->name('getcontent');
+Route::post('/updatecontent/{id}', [generalContentController::class, 'updatecontent'])->name('updatecontent');
+Route::delete('/deletecontent/{id}', [generalContentController::class, 'deletecontent'])->name('deletecontent');
 
 
 Route::post('/createjobcategory', [jobRolesCategoryController::class, 'createJobCategory'])->name('createJobCategory');
@@ -58,6 +66,7 @@ Route::delete('/deleteprogram/{id}', [ProgramsController::class, 'deleteprogram'
 
 
 Route::post('/createinstructor', [InstructorsController::class, 'createinstructor'])->name('createinstructor');
+Route::get('/getinstructor', [InstructorsController::class, 'getinstructor'])->name('getinstructor');
 Route::post('/updateinstructor/{id}', [InstructorsController::class, 'updateinstructor'])->name('updateinstructor');
 Route::delete('/deleteinstructor/{id}', [InstructorsController::class, 'deleteinstructor'])->name('deleteinstructor');
 

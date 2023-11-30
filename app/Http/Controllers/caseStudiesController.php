@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\caseStudy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class caseStudiesController extends Controller
 {
@@ -58,6 +59,60 @@ class caseStudiesController extends Controller
         return response()->json([
             'casestudy' => $formattedCasestudies
         ]);
-     
+
+    }
+
+
+
+
+    public function updatecasestudy(Request $request, $id){
+
+        $data = Validator::make($request->all(), [
+                'title' => 'required',
+                'description' => 'required|string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        if ($data->fails()) {
+            return response()->json(['errors' => $data->errors()], 422);
+        }
+
+        $foundCaseStudy = caseStudy::find($id);
+
+        if (!$foundCaseStudy) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundCaseStudy->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . '.' . $request->file('image')->extension();
+            $request->file('image')->storeAs('public/images', $fileName);
+
+            $foundCaseStudy->update(['image' => $fileName]);
+        }
+
+
+        return response()->json(['message' => 'Updated successfully']);
+
+    }
+
+
+
+    public function deletecasestudy($id){
+
+        $foundCaseStudy = caseStudy::where(['id' => $id])->first();
+
+        if (!$foundCaseStudy) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundCaseStudy->delete();
+
+        return response()->json(['message' => 'role deleted']);
+
     }
 }

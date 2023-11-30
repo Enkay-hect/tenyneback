@@ -48,12 +48,6 @@ class InstructorsController extends Controller
     }
 
 
-
-
-
-
-
-
     public function updateinstructor(Request $request, $id){
         $data = Validator::make($request->all(), [
             'instructor_name'       => 'string',
@@ -80,12 +74,6 @@ class InstructorsController extends Controller
     }
 
 
-
-
-
-
-
-
     public function deleteinstructor($id){
         $foundInstructor = ProgramInstructors::where(['id' => $id])->first();
 
@@ -99,4 +87,23 @@ class InstructorsController extends Controller
         return response()->json(['message' => 'role deleted']);
 
     }
+
+
+
+
+    public function getinstructor(){
+        // dd('sfasfaf');
+        $data = ProgramInstructors::all();
+
+
+        if ($data->isEmpty()) {
+            return response()->json(['message' => 'No instructors found'], 404);
+        }
+
+        return response()->json([
+            'instructors' => $data
+            // 'asfsafsafsadfdsa'
+        ]);
+    }
+
 }
