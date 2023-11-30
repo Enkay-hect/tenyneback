@@ -40,8 +40,6 @@ class jobRolesCategoryController extends Controller
     }
 
 
-
-
     public function updatejobcategory(Request $request, $id)
     {
 

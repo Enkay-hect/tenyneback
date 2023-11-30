@@ -109,7 +109,8 @@ class JobsRoleController extends Controller
         if (!$foundRole) {
             return response()->json(['error' => 'Not found'], 404);
         }
-
+        $foundRole->jobRoleCategories()->detach();
+        
         $foundRole->delete();
 
         return response()->json(['message' => 'role deleted']);
