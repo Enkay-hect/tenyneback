@@ -43,14 +43,20 @@ class ProgramCategoriesController extends Controller
     public function getprogram(){
         $data = Programs::with(['ProgramCategories', 'instructors'])->get();
 
-        return response([
-            // 'program_categories' => $formattedCategories
-            'programs' => $data
+        $programData = $data->map(function ($program) {
+            return [
+                'program' => $program,
+                'image' => asset('storage/images/' . $program->image)
+            ];
+        });
+
+        return response()->json([
+            'programs' => $programData,
 
         ]);
     }
 
-    
+
 
 }
 
