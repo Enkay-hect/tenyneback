@@ -46,4 +46,57 @@ class InstructorsController extends Controller
         $inst->Programs()->attach($findProgramId);
 
     }
+
+
+
+
+
+
+
+
+    public function updateinstructor(Request $request, $id){
+        $data = Validator::make($request->all(), [
+            'instructor_name'       => 'string',
+            'instructor_details'    => 'string',
+        ]);
+
+        if ($data->fails()) {
+            return response()->json(['errors' => $data->errors()], 422);
+        }
+
+        $foundInstructor = ProgramInstructors::find($id);
+
+        if (!$foundInstructor) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundInstructor->update([
+            'instructor_name' => $request->input('instructor_name'),
+            'instructor_details' => $request->input('instructor_details'),
+        ]);
+
+
+        return response()->json(['message' => 'Updated successfully']);
+    }
+
+
+
+
+
+
+
+
+    public function deleteinstructor($id){
+        $foundInstructor = ProgramInstructors::where(['id' => $id])->first();
+
+        if (!$foundInstructor) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+        $foundInstructor->Programs()->detach();
+
+        $foundInstructor->delete();
+
+        return response()->json(['message' => 'role deleted']);
+
+    }
 }

@@ -46,8 +46,11 @@ class ProgramCategoriesController extends Controller
         return response([
             // 'program_categories' => $formattedCategories
             'programs' => $data
+
         ]);
     }
+
+    
 
 }
 

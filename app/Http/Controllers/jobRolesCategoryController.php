@@ -82,4 +82,13 @@ class jobRolesCategoryController extends Controller
 
     }
 
+    public function getjobcategory(){
+        $data = jobRoleCategory::with(['jobRoles'])->get();
+
+        return response()->json([
+            'job_roles_category' => $data
+            //  'image'            => asset('storage/images/' . $programs->image),
+        ]);
+    }
+
 }

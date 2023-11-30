@@ -103,14 +103,13 @@ class JobsRoleController extends Controller
 
     public function deletejobrole($id)
     {
-
         $foundRole = jobRole::where(['id' => $id])->first();
 
         if (!$foundRole) {
             return response()->json(['error' => 'Not found'], 404);
         }
         $foundRole->jobRoleCategories()->detach();
-        
+
         $foundRole->delete();
 
         return response()->json(['message' => 'role deleted']);

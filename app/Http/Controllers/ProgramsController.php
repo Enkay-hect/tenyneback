@@ -79,4 +79,19 @@ class ProgramsController extends Controller
 
         $prog->ProgramCategories()->attach($findProgramCategoryId);
     }
+
+
+
+    public function deleteprogram($id){
+        $foundProgram = Programs::where(['id' => $id])->first();
+
+        if (!$foundProgram) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+        $foundProgram->instructors()->detach();
+
+        $foundProgram->delete();
+
+        return response()->json(['message' => 'role deleted']);
+    }
 }
