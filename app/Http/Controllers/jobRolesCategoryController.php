@@ -39,4 +39,49 @@ class jobRolesCategoryController extends Controller
                 ]);
     }
 
+
+
+
+    public function updatejobcategory(Request $request, $id)
+    {
+
+        $data = Validator::make($request->all(), [
+            'name' => 'required|string',
+
+        ]);
+
+        if ($data->fails()) {
+            return response()->json(['errors' => $data->errors()], 422);
+        }
+
+        $foundRole = jobRoleCategory::find($id);
+
+        if (!$foundRole) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundRole->update([
+            'name' => $request->input('name'),
+        ]);
+
+
+        return response()->json(['message' => 'Category updated successfully']);
+
+    }
+
+    public function deletejobcategory($id)
+    {
+        $foundCategory = jobRoleCategory::where(['id' => $id])->first();
+
+        if (!$foundCategory) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundCategory->jobRoles()->detach();
+        $foundCategory->delete();
+
+        return response()->json(['message' => 'Job category deleted successfully']);
+
+    }
+
 }

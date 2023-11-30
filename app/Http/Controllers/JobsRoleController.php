@@ -48,7 +48,7 @@ class JobsRoleController extends Controller
             'image' => $fileName,
         ]);
 
-        $roles->jobRoleCategories()->attach($findCategoryId);
+        $roles->jobRoleCategories()->attach($findCategory);
 
     }
 
@@ -59,18 +59,50 @@ class JobsRoleController extends Controller
 
         return response()->json([
             'job_roles' => $data
+            //  'image'            => asset('storage/images/' . $programs->image),
+
         ]);
     }
 
-        //                             'image'            => asset('storage/images/' . $programs->image),
+
+    public function updatejobrole(Request $request, $id)
+    {
+            $data = Validator::make($request->all(), [
+                'role' => 'required|string',
+                'title' => 'sometimes|string',
+                'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+            if ($data->fails()) {
+                return response()->json(['errors' => $data->errors()], 422);
+            }
+
+            $foundRole = jobRole::find($id);
+
+            if (!$foundRole) {
+                return response()->json(['error' => 'Not found'], 404);
+            }
+
+            $foundRole->update([
+                'role' => $request->input('role'),
+                'title' => $request->input('title'),
+            ]);
+
+
+            if ($request->hasFile('image')) {
+                $fileName = time() . '.' . $request->file('image')->extension();
+                $request->file('image')->storeAs('public/images', $fileName);
+
+                $foundRole->update(['image' => $fileName]);
+            }
+
+            return response()->json(['message' => 'Role updated successfully']);
+    }
 
 
 
-
-    public function deletejobrole($id){
-        // $data = $request->validate([
-        //     'id' => 'required|exists:job_roles, id',
-        // ]);
+    public function deletejobrole($id)
+    {
 
         $foundRole = jobRole::where(['id' => $id])->first();
 

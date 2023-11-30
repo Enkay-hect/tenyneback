@@ -41,8 +41,16 @@ Route::get('/getcontent', [generalContentController::class, 'getcontent'])->name
 
 
 Route::post('/createjobcategory', [jobRolesCategoryController::class, 'createJobCategory'])->name('createJobCategory');
+Route::post('/updatejobcategory/{id}', [jobRolesCategoryController::class, 'updatejobcategory'])->name('updatejobcategory');
+Route::delete('/deletejobcategory/{id}', [jobRolesCategoryController::class, 'deletejobcategory'])->name('deletejobcategory');
+
+
 Route::post('/createjobrole', [JobsRoleController::class, 'createjobrole'])->name('createjobrole');
 Route::get('/getjobrole', [JobsRoleController::class, 'getjobrole'])->name('getjobrole');
+Route::post('/updatejobrole/{id}', [JobsRoleController::class, 'updatejobrole'])->name('updatejobrole');
+
+
+
 Route::delete('/deletejobrole/{id}', [JobsRoleController::class, 'deletejobrole'])->name('deletejobrole');
 
 
@@ -54,7 +62,6 @@ Route::get('/getprogram', [ProgramCategoriesController::class, 'getprogram'])->n
 
 
 Route::post('/createinstructor', [InstructorsController::class, 'createinstructor'])->name('createinstructor');
-
 
 
 
