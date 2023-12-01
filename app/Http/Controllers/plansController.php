@@ -11,6 +11,7 @@ class plansController extends Controller
 {
     public function createPlan(Request $request){
 
+
         $request->validate([
                  'plan_name'          => 'required',
                  'description'        => 'string',
@@ -39,12 +40,6 @@ class plansController extends Controller
                         'price'                 => $data['price'],
                         'features'              => $data['features'],
                     ]);
-
-                 PlanFeature::create([
-                        'description'           => $data['description'],
-                    ]);
-
-                $plan->planFeature()->attach($plan);
 
      }
 

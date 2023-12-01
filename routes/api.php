@@ -5,6 +5,7 @@ use App\Http\Controllers\generalContentController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\jobRolesCategoryController;
 use App\Http\Controllers\JobsRoleController;
+use App\Http\Controllers\planFeaturesController;
 use App\Http\Controllers\plansController;
 use App\Http\Controllers\ProgramCategoriesController;
 use App\Http\Controllers\ProgramsController;
@@ -31,7 +32,7 @@ Route::post('/addplanfeature', [plansController::class, 'addPlanFeature'])->name
 Route::get('/getplan', [plansController::class, 'getplan'])->name('getplan');
 Route::post('/updateplan/{id}', [plansController::class, 'updateplan'])->name('updateplan');
 Route::delete('/deleteplan/{id}', [plansController::class, 'deleteplan'])->name('deleteplan');
-
+Route::post('/createPlanDescription', [planFeaturesController::class, 'createPlanDescription'])->name('createPlanDescription');
 
 
 Route::post('/createcasestudy', [caseStudiesController::class, 'createCaseStudy'])->name('createCaseStudy');
