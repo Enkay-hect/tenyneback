@@ -40,7 +40,7 @@ class JobsRoleController extends Controller
 
     public function create(array $data, $fileName){
         $findCategory = jobRoleCategory::where(['id' => $data['id']])->first();
-        $findCategoryId = jobRoleCategory::find($findCategory)->first();
+        // $findCategoryId = jobRoleCategory::find($findCategory)->first();
 
         $roles = jobRole::create([
             'role'  => $data['role'],
@@ -57,9 +57,17 @@ class JobsRoleController extends Controller
     {
         $data = jobRole::with(['jobRoleCategories'])->get();
 
+        $roleData = $data->map(function($role){
+
+            return [
+                'job_roles' => $role,
+                'imageUrl' => asset('storage/images/' . $role->image)
+            ];
+
+        });
+
         return response()->json([
-            'job_roles' => $data
-            //  'image'            => asset('storage/images/' . $programs->image),
+             'job_role' => $roleData,
 
         ]);
     }
