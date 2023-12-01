@@ -61,7 +61,7 @@ class JobsRoleController extends Controller
 
             return [
                 'job_roles' => $role,
-                'imageUrl' => asset('storage/images/' . $role->image)
+                'image' => asset('storage/images/' . $role->image)
             ];
 
         });
