@@ -44,19 +44,17 @@ class plansController extends Controller
      }
 
 
-
-
     public function addPlanFeature(Request $request)
     {
-        $data = (object) $request->only(['plan_name', 'feature', 'id']);
+        $data = (object) $request->only(['id', 'features']);
 
-
-        if($details = plans::where(['plan_name' => $data->plan_name])->first()){
+        if($details = plans::where(['id' => $data->id])->first()){
             $change = plans::find($details)->first();
 
             $features = collect($change->features);
-            if(!$features->contains($data->feature)){
-                    $features->add($data->feature);
+
+            if(!$features->contains($data->features)){
+                    $features->add($data->features);
                     $change->features = $features;
                     $change->save();
                      return response()->json([
