@@ -21,7 +21,7 @@ class PlanFeature extends Model
     public function plans(): BelongsToMany
     {
         return $this->BelongsToMany(
-            plans::class,
+            Plans::class,
             'plan_feature_pivot',
     'plan_feature_id',
     'plan_id'
