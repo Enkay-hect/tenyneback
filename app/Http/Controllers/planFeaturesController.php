@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class planFeaturesController extends Controller
 {
    public function createPlanDescription(Request $request){
-   
+
 
     $data = Validator::make($request->all(), [
         'description' => 'required|string'
@@ -26,12 +26,13 @@ class planFeaturesController extends Controller
    }
 
    public function create(array $data){
-    $planId = plans::where(['id' => $data['id']])->first();
+    // $planId = plans::where(['id' => $data['id']])->first();
 
-        $planDescription = PlanFeature::create([
+        // $planDescription =
+        PlanFeature::create([
             'description'  => $data['description']
         ]);
 
-        $planDescription->plans()->attach($planId);
+        // $planDescription->plans()->attach($planId);
    }
 }
