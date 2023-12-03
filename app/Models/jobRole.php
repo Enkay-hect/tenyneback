@@ -18,7 +18,8 @@ class jobRole extends Model
      */
     protected $fillable = [
         'title',
-        'image','role'
+        'image',
+        'role'
     ];
 
     public function jobRoleCategories():BelongsToMany

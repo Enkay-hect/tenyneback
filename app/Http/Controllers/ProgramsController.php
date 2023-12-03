@@ -88,6 +88,7 @@ class ProgramsController extends Controller
         if (!$foundProgram) {
             return response()->json(['error' => 'Not found'], 404);
         }
+        
         $foundProgram->instructors()->detach();
 
         $foundProgram->delete();
