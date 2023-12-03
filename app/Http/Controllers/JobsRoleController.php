@@ -90,7 +90,6 @@ class JobsRoleController extends Controller
 
             $foundRole->update([
                 'role' => $request->input('role'),
-                'title' => $request->input('title'),
             ]);
 
 
