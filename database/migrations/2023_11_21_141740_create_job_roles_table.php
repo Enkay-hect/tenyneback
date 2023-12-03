@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('job_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->string('role');
             $table->string('image');
             $table->timestamps();

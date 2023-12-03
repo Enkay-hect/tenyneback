@@ -12,7 +12,6 @@ class JobsRoleController extends Controller
     public function createjobrole(Request $request){
         $data = Validator::make($request->all(),[
             'role' => 'string|required',
-            'title' => 'string|sometimes',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
@@ -44,7 +43,6 @@ class JobsRoleController extends Controller
 
         $roles = jobRole::create([
             'role'  => $data['role'],
-            'title' => $data['title'],
             'image' => $fileName,
         ]);
 
