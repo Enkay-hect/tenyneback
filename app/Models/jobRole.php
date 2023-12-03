@@ -22,6 +22,14 @@ class jobRole extends Model
         'role'
     ];
 
+    protected $appends = [
+        'image_url'
+    ];
+
+    public function getImageUrlAttribute(){
+        return asset('storage/images/' . $this->image);
+    }
+
     public function jobRoleCategories():BelongsToMany
      {
         return $this->belongsToMany(
@@ -31,6 +39,7 @@ class jobRole extends Model
             'job_category_id',
         );
     }
+
 
 
 }

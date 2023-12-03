@@ -55,17 +55,17 @@ class JobsRoleController extends Controller
     {
         $data = jobRole::with(['jobRoleCategories'])->get();
 
-        $roleData = $data->map(function($role){
+        // $roleData = $data->map(function($role){
 
-            return [
-                'job_roles' => $role,
-                'image' => asset('storage/images/' . $role->image)
-            ];
+        //     return [
+        //         'job_roles' => $role,
+        //         'image' => asset('storage/images/' . $role->image)
+        //     ];
 
-        });
+        // });
 
         return response()->json([
-             'job_role' => $roleData,
+             'job_roles' => $data,
 
         ]);
     }
