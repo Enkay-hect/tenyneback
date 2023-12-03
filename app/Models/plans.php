@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 
-class plans extends Model
+class Plans extends Model
 {
     use HasFactory;
 
@@ -35,7 +35,7 @@ class plans extends Model
     public function planFeature(): BelongsToMany
     {
         return $this->BelongsToMany(
-            planFeature::class,
+            PlanFeature::class,
             'plan_feature_pivot',
     'plan_id',
     'plan_feature_id'

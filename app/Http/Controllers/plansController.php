@@ -33,7 +33,7 @@ class plansController extends Controller
 
      public function create(array $data)
      {
-        $plan = plans::create([
+        $plan = Plans::create([
                         'plan_name'             => $data['plan_name'],
                         'extra_details'         => $data['extra_details'],
                         'billing_duration'      => $data['billing_duration'],
@@ -48,8 +48,8 @@ class plansController extends Controller
     {
         $data = (object) $request->only(['id', 'features']);
 
-        if($details = plans::where(['id' => $data->id])->first()){
-            $change = plans::find($details)->first();
+        if($details = Plans::where(['id' => $data->id])->first()){
+            $change = Plans::find($details)->first();
 
             $features = collect($change->features);
 
@@ -69,7 +69,7 @@ class plansController extends Controller
 
 
     public function getplan(){
-        $data = plans::with(['planFeature'])->get();
+        $data = Plans::with(['planFeature'])->get();
 
         return  response()->json(
             ['plans' => $data]
@@ -93,7 +93,7 @@ class plansController extends Controller
             return response()->json(['errors' => $data->errors()], 422);
         }
 
-        $foundPlan = plans::find($id);
+        $foundPlan = Plans::find($id);
 
         if (!$foundPlan) {
             return response()->json(['error' => 'Not found'], 404);
@@ -117,7 +117,7 @@ class plansController extends Controller
 
     public function deleteplan($id){
 
-        $foundPlan = plans::where(['id' => $id])->first();
+        $foundPlan = Plans::where(['id' => $id])->first();
 
         if (!$foundPlan) {
             return response()->json(['error' => 'Not found'], 404);
