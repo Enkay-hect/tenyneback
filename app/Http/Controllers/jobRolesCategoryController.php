@@ -34,7 +34,7 @@ class jobRolesCategoryController extends Controller
 
     public function create(array $data)
     {
-                jobRoleCategory::create([
+                JobRoleCategory::create([
                         'name'  => $data['name'],
                 ]);
     }
@@ -52,7 +52,7 @@ class jobRolesCategoryController extends Controller
             return response()->json(['errors' => $data->errors()], 422);
         }
 
-        $foundRole = jobRoleCategory::find($id);
+        $foundRole = JobRoleCategory::find($id);
 
         if (!$foundRole) {
             return response()->json(['error' => 'Not found'], 404);
@@ -69,7 +69,7 @@ class jobRolesCategoryController extends Controller
 
     public function deletejobcategory($id)
     {
-        $foundCategory = jobRoleCategory::where(['id' => $id])->first();
+        $foundCategory = JobRoleCategory::where(['id' => $id])->first();
 
         if (!$foundCategory) {
             return response()->json(['error' => 'Not found'], 404);
@@ -83,7 +83,7 @@ class jobRolesCategoryController extends Controller
     }
 
     public function getjobcategory(){
-        $data = jobRoleCategory::with(['jobRoles'])->get();
+        $data = JobRoleCategory::with(['jobRoles'])->get();
 
         return response()->json([
             'job_roles_category' => $data

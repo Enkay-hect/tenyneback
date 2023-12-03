@@ -41,4 +41,14 @@ class Plans extends Model
     'plan_feature_id'
         )->withTimestamps();
     }
+
+    public function role(): BelongsToMany
+    {
+        return $this->BelongsToMany(
+            JobRole::class,
+            'plan_role_pivot',
+    'plan_id',
+    'role_id'
+        )->withTimestamps();
+    }
 }

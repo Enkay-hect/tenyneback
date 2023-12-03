@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Js;
 
-
-class jobRole extends Model
+class JobRole extends Model
 {
     use HasFactory;
 
@@ -33,13 +33,23 @@ class jobRole extends Model
     public function jobRoleCategories():BelongsToMany
      {
         return $this->belongsToMany(
-            jobRoleCategory::class,
+            JobRoleCategory::class,
             'job_pivot',
             'job_role_id',
             'job_category_id',
         );
     }
 
+
+    public function plan(): BelongsToMany
+    {
+        return $this->BelongsToMany(
+            Plans::class,
+            'plan_role_pivot',
+    'role_id',
+    'plan_id'
+        )->withTimestamps();
+    }
 
 
 }

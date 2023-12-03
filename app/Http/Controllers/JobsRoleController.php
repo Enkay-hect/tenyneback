@@ -38,10 +38,10 @@ class JobsRoleController extends Controller
     }
 
     public function create(array $data, $fileName){
-        $findCategory = jobRoleCategory::where(['id' => $data['id']])->first();
+        $findCategory = JobRoleCategory::where(['id' => $data['id']])->first();
         // $findCategoryId = jobRoleCategory::find($findCategory)->first();
 
-        $roles = jobRole::create([
+        $roles = JobRole::create([
             'role'  => $data['role'],
             'image' => $fileName,
         ]);
@@ -53,7 +53,7 @@ class JobsRoleController extends Controller
 
     public function getjobrole()
     {
-        $data = jobRole::with(['jobRoleCategories'])->get();
+        $data = JobRole::with(['jobRoleCategories'])->get();
 
         // $roleData = $data->map(function($role){
 
@@ -82,7 +82,7 @@ class JobsRoleController extends Controller
                 return response()->json(['errors' => $data->errors()], 422);
             }
 
-            $foundRole = jobRole::find($id);
+            $foundRole = JobRole::find($id);
 
             if (!$foundRole) {
                 return response()->json(['error' => 'Not found'], 404);
@@ -107,7 +107,7 @@ class JobsRoleController extends Controller
 
     public function deletejobrole($id)
     {
-        $foundRole = jobRole::where(['id' => $id])->first();
+        $foundRole = JobRole::where(['id' => $id])->first();
 
         if (!$foundRole) {
             return response()->json(['error' => 'Not found'], 404);

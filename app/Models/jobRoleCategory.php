@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
 
-class jobRoleCategory extends Model
+class JobRoleCategory extends Model
 {
     use HasFactory;
 
@@ -25,11 +25,11 @@ class jobRoleCategory extends Model
     public function jobRoles():BelongsToMany
     {
         return $this->belongsToMany(
-            jobRole::class,
+            JobRole::class,
             'job_pivot',
             'job_category_id',
             'job_role_id',
         );
-    } 
+    }
 
 }
