@@ -33,6 +33,8 @@ Route::get('/getplan', [plansController::class, 'getplan'])->name('getplan');
 Route::post('/updateplan/{id}', [plansController::class, 'updateplan'])->name('updateplan');
 Route::delete('/deleteplan/{id}', [plansController::class, 'deleteplan'])->name('deleteplan');
 Route::post('/createPlanDescription', [planFeaturesController::class, 'createPlanDescription'])->name('createPlanDescription');
+Route::get('/getPlanFeatureDescription', [planFeaturesController::class, 'getPlanFeatureDescription'])->name('getPlanFeatureDescription');
+
 
 
 Route::post('/createcasestudy', [caseStudiesController::class, 'createCaseStudy'])->name('createCaseStudy');

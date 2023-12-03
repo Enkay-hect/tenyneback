@@ -35,4 +35,13 @@ class planFeaturesController extends Controller
 
         // $planDescription->plans()->attach($planId);
    }
+
+   public function getPlanFeatureDescription(){
+    $data = PlanFeature::all();
+
+    return response()->json([
+        'features' => $data
+    ]);
+
+   }
 }
