@@ -18,7 +18,7 @@ class plansController extends Controller
                  'extra_details'      => 'string',
                  'billing_duration'   => 'required',
                  'price'              => 'required',
-                 'features'           => 'required|string',
+                 'features'           => 'string',
              ]);
 
          $data = $request->post();
