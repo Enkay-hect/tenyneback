@@ -50,7 +50,7 @@ class JobsRoleController extends Controller
         ]);
 
         $roles->jobRoleCategories()->attach($findCategory);
-        
+
         $roles->plan()->attach($findPlan);
 
     }
@@ -108,7 +108,6 @@ class JobsRoleController extends Controller
 
             return response()->json(['message' => 'Role updated successfully']);
     }
-
 
 
     public function deletejobrole($id)
