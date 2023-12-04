@@ -26,6 +26,7 @@ class Plans extends Model
         'billing_duration',
         'extra_details',
         'features',
+        'annual_billing'
     ];
 
     protected $casts = [
