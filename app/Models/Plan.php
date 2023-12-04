@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 
-class Plans extends Model
+class Plan extends Model
 {
     use HasFactory;
       /**

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobRole;
-use App\Models\PlanFeature;
-use App\Models\plans;
+use App\Models\Plan;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,7 +37,7 @@ class plansController extends Controller
      {
         $findRoldId = JobRole::where(['id' => $data['id']])->first();
 
-        $plan = Plans::create([
+        $plan = Plan::create([
                         'plan_name'             => $data['plan_name'],
                         'extra_details'         => $data['extra_details'],
                         'billing_duration'      => $data['billing_duration'],
@@ -55,8 +55,8 @@ class plansController extends Controller
     {
         $data = (object) $request->only(['features']);
 
-        if($details = Plans::find($id)){
-            $change = Plans::find($details)->first();
+        if($details = Plan::find($id)){
+            $change = Plan::find($details)->first();
 
             $features = collect($change->features);
 
@@ -78,11 +78,11 @@ class plansController extends Controller
     public function getplan(Request $request){
         $role = $request->role ?? null;
         if($role){
-            $data = Plans::with(['planFeature'])->whereHas('role', function($query) use ($role){
+            $data = Plan::with(['planFeature'])->whereHas('role', function($query) use ($role){
                 $query->where('job_roles.id', $role);
             })->get();
         } else {
-            $data = Plans::with(['planFeature'])->get();
+            $data = Plan::with(['planFeature'])->get();
         }
 
 
@@ -108,7 +108,7 @@ class plansController extends Controller
             return response()->json(['errors' => $data->errors()], 422);
         }
 
-        $foundPlan = Plans::find($id);
+        $foundPlan = Plan::find($id);
 
         if (!$foundPlan) {
             return response()->json(['error' => 'Not found'], 404);
@@ -132,7 +132,7 @@ class plansController extends Controller
 
     public function deleteplan($id){
 
-        $foundPlan = Plans::where(['id' => $id])->first();
+        $foundPlan = Plan::where(['id' => $id])->first();
 
         if (!$foundPlan) {
             return response()->json(['error' => 'Not found'], 404);
