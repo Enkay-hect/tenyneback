@@ -45,6 +45,7 @@ class caseStudiesController extends Controller
 
     public function getcasestudy(){
 
+        
         $data = CaseStudy::all();
 
         $formattedCasestudies = $data->map(function ($casestudy) {
