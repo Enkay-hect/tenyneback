@@ -56,6 +56,14 @@ class ProgramCategoriesController extends Controller
         ]);
     }
 
+    public function getProgramCategory(){
+        $data = ProgramCategories::all();
+
+        return response()->json([
+            'Program_Category' => $data
+        ]);
+    }
+
 
 
 }
