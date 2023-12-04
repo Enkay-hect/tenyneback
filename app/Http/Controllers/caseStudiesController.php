@@ -44,10 +44,11 @@ class caseStudiesController extends Controller
 
 
     public function getcasestudy(){
+
         $data = CaseStudy::all();
 
         $formattedCasestudies = $data->map(function ($casestudy) {
-            
+
             return [
                 "id" => $casestudy->id,
                 "image" => asset('storage/images/' . $casestudy->image),
@@ -108,7 +109,8 @@ class caseStudiesController extends Controller
 
         $foundCaseStudy = CaseStudy::where(['id' => $id])->first();
 
-        if (!$foundCaseStudy) {
+        if (!$foundCaseStudy)
+        {
             return response()->json(['error' => 'Not found'], 404);
         }
 
