@@ -44,11 +44,11 @@ class plansController extends Controller
      }
 
 
-    public function addPlanFeature(Request $request)
+    public function addPlanFeature(Request $request, $id)
     {
-        $data = (object) $request->only(['id', 'features']);
+        $data = (object) $request->only(['features']);
 
-        if($details = Plans::where(['id' => $data->id])->first()){
+        if($details = Plans::find($id)){
             $change = Plans::find($details)->first();
 
             $features = collect($change->features);

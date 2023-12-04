@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/createplan', [plansController::class, 'createPlan'])->name('createPlan');
-Route::post('/addplanfeature', [plansController::class, 'addPlanFeature'])->name('addPlanFeature');
+Route::post('/addplanfeature/{id}', [plansController::class, 'addPlanFeature'])->name('addPlanFeature');
 Route::get('/getplan', [plansController::class, 'getplan'])->name('getplan');
 Route::post('/updateplan/{id}', [plansController::class, 'updateplan'])->name('updateplan');
 Route::delete('/deleteplan/{id}', [plansController::class, 'deleteplan'])->name('deleteplan');
