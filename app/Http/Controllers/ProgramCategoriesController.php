@@ -60,7 +60,7 @@ class ProgramCategoriesController extends Controller
         $data = ProgramCategories::all();
 
         return response()->json([
-            'Program_Category' => $data
+            'programcategory' => $data
         ]);
     }
 
