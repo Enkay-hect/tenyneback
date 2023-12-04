@@ -45,7 +45,7 @@ class Programs extends Model
     'programs_id',
     'program_categories_id',
 
-        )->withTimestamps();
+        )->withTimestamps(); 
 
     }
 
