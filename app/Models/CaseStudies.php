@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CaseStudy extends Model
+class CaseStudies extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,7 @@ class CaseStudy extends Model
      *
      * @return response()
      */
+
     protected $fillable = [
         'title',
         'description',

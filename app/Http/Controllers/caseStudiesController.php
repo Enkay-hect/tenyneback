@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CaseStudy;
+use App\Models\CaseStudies;
+use App\Models\Models\CaseStudies as ModelsCaseStudies;
+use App\Models\Test;
+use App\Models\Testing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,7 +37,7 @@ class caseStudiesController extends Controller
 
     public function create(array $data, $fileName)
     {
-        return CaseStudy::create([
+        return CaseStudies::create([
             'title' => $data['title'],
             'description'  => $data['description'],
             'image'     => $fileName,
@@ -46,7 +49,8 @@ class caseStudiesController extends Controller
     public function getcasestudy(){
 
 
-        $data = CaseStudy::all();
+        $data = CaseStudies::all();
+        dd($data);
 
         $formattedCasestudies = $data->map(function ($casestudy) {
 
@@ -81,7 +85,7 @@ class caseStudiesController extends Controller
             return response()->json(['errors' => $data->errors()], 422);
         }
 
-        $foundCaseStudy = CaseStudy::find($id);
+        $foundCaseStudy = CaseStudies::find($id);
 
         if (!$foundCaseStudy) {
             return response()->json(['error' => 'Not found'], 404);
@@ -108,7 +112,7 @@ class caseStudiesController extends Controller
 
     public function deletecasestudy($id){
 
-        $foundCaseStudy = CaseStudy::where(['id' => $id])->first();
+        $foundCaseStudy = CaseStudies::where(['id' => $id])->first();
 
         if (!$foundCaseStudy)
         {
