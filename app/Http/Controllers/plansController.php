@@ -78,11 +78,11 @@ class plansController extends Controller
     public function getplan(Request $request){
         $role = $request->role ?? null;
         if($role){
-            $data = Plans::with(['planFeature'])->whereHas('role', function($query) use ($role){
+            $data = plans::with(['planFeature'])->whereHas('role', function($query) use ($role){
                 $query->where('job_roles.id', $role);
             })->get();
         } else {
-            $data = Plans::with(['planFeature'])->get();
+            $data = plans::with(['planFeature'])->get();
         }
 
 

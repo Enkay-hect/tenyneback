@@ -12,8 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Plans extends Model
 {
     use HasFactory;
-
-
       /**
      * Write code on Method
      *
