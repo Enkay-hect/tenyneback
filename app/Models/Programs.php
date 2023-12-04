@@ -28,6 +28,14 @@ class Programs extends Model
         'program_flow' => 'array',
     ];
 
+    protected $appends = [
+        'image_url'
+    ];
+
+    public function getImageUrlAttribute(){
+        return asset('storage/images/' . $this->image);
+    }
+
 
     public function ProgramCategories(): BelongsToMany
     {

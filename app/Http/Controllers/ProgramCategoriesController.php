@@ -46,7 +46,7 @@ class ProgramCategoriesController extends Controller
         $programData = $data->map(function ($program) {
             return [
                 'program' => $program,
-                'image' => asset('storage/images/' . $program->image)
+                // 'image' => asset('storage/images/' . $program->image)
             ];
         });
 
