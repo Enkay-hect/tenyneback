@@ -43,6 +43,7 @@ class plansController extends Controller
                         'billing_duration'      => $data['billing_duration'],
                         'price'                 => $data['price'],
                         'features'              => $data['features'],
+                        'annual_billing'        => $data['annual_billing']
                     ]);
 
         $plan->role()->attach($findRoldId);
