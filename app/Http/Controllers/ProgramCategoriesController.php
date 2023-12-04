@@ -51,7 +51,7 @@ class ProgramCategoriesController extends Controller
         });
 
         return response()->json([
-            'programs' => $programData,
+           $programData,
 
         ]);
     }
