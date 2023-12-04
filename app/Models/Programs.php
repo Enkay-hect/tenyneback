@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -29,11 +30,18 @@ class Programs extends Model
     ];
 
     protected $appends = [
-        'image_url'
+        'image_url', 'duration'
     ];
 
     public function getImageUrlAttribute(){
         return asset('storage/images/' . $this->image);
+    }
+
+    public function getDurationAttribute(){
+        $startdate  =   Carbon::parse($this->start_date);
+        $enddate    =   Carbon::parse($this->end_date);
+
+        return $enddate->diffInMonths($startdate);
     }
 
 
@@ -45,7 +53,7 @@ class Programs extends Model
     'programs_id',
     'program_categories_id',
 
-        )->withTimestamps(); 
+        )->withTimestamps();
 
     }
 
