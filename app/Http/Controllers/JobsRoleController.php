@@ -66,7 +66,8 @@ class JobsRoleController extends Controller
         //         'image' => asset('storage/images/' . $role->image)
         //     ];
 
-        // });
+        // })
+        //;
 
         return response()->json([
              'job_roles' => $data,
