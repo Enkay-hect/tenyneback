@@ -8,17 +8,17 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
 
-class jobPivot extends Pivot
+class JobPivot extends Pivot
 {
     use HasFactory;
 
     public function jobrole() {
 
-        return $this->belongsTo(jobRole::class, 'id');
+        return $this->belongsTo(JobRole::class, 'id');
       }
 
       public function jobrolecategory() {
 
-          return $this->belongsTo(jobRoleCategory::class, 'id');
+          return $this->belongsTo(JobRoleCategory::class, 'id');
       }
 }

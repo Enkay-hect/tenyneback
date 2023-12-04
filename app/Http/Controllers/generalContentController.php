@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\generalContents;
+use App\Models\GeneralContents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,7 +28,7 @@ class generalContentController extends Controller
 
      public function create(array $inputs)
      {
-         return generalContents::create([
+         return GeneralContents::create([
              'name'         => $inputs['name'],
              'description'  => $inputs['description'],
              'comment'      => $inputs['comment'],
@@ -38,7 +38,7 @@ class generalContentController extends Controller
 
    public function getcontent()
    {
-       $data = generalContents::all();
+       $data = GeneralContents::all();
 
         return  response()->json([
             'content'=>$data
@@ -60,7 +60,7 @@ class generalContentController extends Controller
         return response()->json(['errors' => $data->errors()], 422);
     }
 
-    $foundContent = generalContents::find($id);
+    $foundContent = GeneralContents::find($id);
 
     if (!$foundContent) {
         return response()->json(['error' => 'Not found'], 404);
@@ -82,16 +82,16 @@ class generalContentController extends Controller
 
 public function deletecontent($id){
 
-    $foundContent = generalContents::where(['id' => $id])->first();
+    $foundContent = GeneralContents::where(['id' => $id])->first();
 
     if (!$foundContent) {
         return response()->json(['error' => 'Not found'], 404);
     }
 
-    $foundContent->delete();
+        $foundContent->delete();
 
-    return response()->json(['message' => 'Plan deleted']);
+        return response()->json(['message' => 'Plan deleted']);
 
-}
+    }
 
 }

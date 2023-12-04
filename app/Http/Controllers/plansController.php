@@ -40,6 +40,7 @@ class plansController extends Controller
                         'price'                 => $data['price'],
                         'features'              => $data['features'],
                     ]);
+                    
 
      }
 
