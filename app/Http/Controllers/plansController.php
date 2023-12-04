@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobRole;
 use App\Models\PlanFeature;
 use App\Models\plans;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ class plansController extends Controller
 
      public function create(array $data)
      {
+        $findRoldId = JobRole::where(['id' => $data['id']])->first();
+
         $plan = Plans::create([
                         'plan_name'             => $data['plan_name'],
                         'extra_details'         => $data['extra_details'],
@@ -40,7 +43,8 @@ class plansController extends Controller
                         'price'                 => $data['price'],
                         'features'              => $data['features'],
                     ]);
-                    
+
+        $plan->role()->attach($findRoldId);
 
      }
 

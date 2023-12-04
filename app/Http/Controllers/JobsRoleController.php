@@ -50,9 +50,6 @@ class JobsRoleController extends Controller
         ]);
 
         $roles->jobRoleCategories()->attach($findCategory);
-
-        $roles->plan()->attach($findPlan);
-
     }
 
 
