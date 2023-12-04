@@ -120,7 +120,7 @@ class plansController extends Controller
             'extra_details' => $request->input('extra_details'),
             'billing_duration' => $request->input('billing_duration'),
             'price' => $request->input('price'),
-            'features' => $request->input('features'),
+            'features' => [$request->input('features')],
         ]);
 
         return response()->json(['message' => 'Updated successfully']);
