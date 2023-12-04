@@ -17,7 +17,7 @@ class Programs extends Model
      */
     protected $fillable = [
         'programTitle', 'image', 'rating', 'reviews', 'subtitle', 'description', 'features', 'start_date',
-        'end_date', 'price', 'learning_scheme', 'why', 'prerequisite', 'best_fit', 'program_flow'
+        'end_date', 'price', 'learning_scheme', 'why', 'prerequisite', 'best_fit', 'program_flow', 'type'
     ];
 
     protected $casts = [

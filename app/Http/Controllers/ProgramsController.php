@@ -28,6 +28,7 @@ class ProgramsController extends Controller
             'prerequisite'     => 'string',
             'best_fit'         => 'string',
             'program_flow'     => 'string',
+            'type'              => 'string'
 
 
         ]);
@@ -75,6 +76,7 @@ class ProgramsController extends Controller
             'prerequisite'     => $data['prerequisite'],
             'best_fit'         => $data['best_fit'],
             'program_flow'     => $data['program_flow'],
+            'type'              => $data['type'],
         ]);
 
         $prog->ProgramCategories()->attach($findProgramCategoryId);
@@ -88,7 +90,7 @@ class ProgramsController extends Controller
         if (!$foundProgram) {
             return response()->json(['error' => 'Not found'], 404);
         }
-        
+
         $foundProgram->instructors()->detach();
 
         $foundProgram->delete();
