@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JobRole;
 use App\Models\JobRoleCategory;
-use App\Models\Plans;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,7 +40,7 @@ class JobsRoleController extends Controller
 
     public function create(array $data, $fileName){
         $findCategory = JobRoleCategory::where(['id' => $data['id']])->first();
-        $findPlan = Plans::where(['id' => $data['id']])->first();
+        $findPlan = Plan::where(['id' => $data['id']])->first();
 
         // $findCategoryId = jobRoleCategory::find($findCategory)->first();
 

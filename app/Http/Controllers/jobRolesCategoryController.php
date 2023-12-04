@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jobRoleCategory;
+use App\Models\JobRoleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
