@@ -42,7 +42,7 @@ class plansController extends Controller
                         'extra_details'         => $data['extra_details'],
                         'billing_duration'      => $data['billing_duration'],
                         'price'                 => $data['price'],
-                        'features'              => $data['features'],
+                        'features'              => [$data['features']],
                         'annual_billing'        => $data['annual_billing']
                     ]);
 
