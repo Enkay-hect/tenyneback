@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('billing_duration');
             $table->text('features');
-            $table->string('plan_name')->unique();
+            $table->string('plan_name');
             $table->string('extra_details')->nullable();
             $table->timestamps();
 
