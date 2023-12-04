@@ -19,6 +19,7 @@ class plansController extends Controller
                  'extra_details'      => 'string',
                  'billing_duration'   => 'required',
                  'price'              => 'required',
+                 'annual_billing'     => 'string',
                  'features'           => 'string',
              ]);
 
