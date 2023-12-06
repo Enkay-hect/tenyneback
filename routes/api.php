@@ -9,6 +9,7 @@ use App\Http\Controllers\planFeaturesController;
 use App\Http\Controllers\plansController;
 use App\Http\Controllers\ProgramCategoriesController;
 use App\Http\Controllers\ProgramsController;
+use App\Models\Programs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,7 @@ Route::get('/getprogram', [ProgramCategoriesController::class, 'getprogram'])->n
 Route::delete('/deleteprogram/{id}', [ProgramsController::class, 'deleteprogram'])->name('deleteprogram');
 Route::get('/getprogramcategory', [ProgramCategoriesController::class, 'getprogramcategory'])->name('getprogramcategory');
 Route::post('/updateprogramcategory/{id}', [ProgramCategoriesController::class, 'updateprogramcategory'])->name('updateprogramcategory');
+Route::post('/updateprogram/{id}', [ProgramsController::class, 'updateprogram'])->name('updateprogram');
 
 
 

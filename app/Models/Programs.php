@@ -23,7 +23,7 @@ class Programs extends Model
 
     protected $casts = [
         'features' => 'array',
-        'learning-scheme' => 'array',
+        'learning_scheme' => 'array',
         'prerequisite' => 'array',
         'best_fit' => 'array',
         'program_flow' => 'array',
