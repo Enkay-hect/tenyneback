@@ -67,6 +67,8 @@ Route::post('/createprogram', [ProgramsController::class, 'createprogram'])->nam
 Route::get('/getprogram', [ProgramCategoriesController::class, 'getprogram'])->name('getprogram');
 Route::delete('/deleteprogram/{id}', [ProgramsController::class, 'deleteprogram'])->name('deleteprogram');
 Route::get('/getprogramcategory', [ProgramCategoriesController::class, 'getprogramcategory'])->name('getprogramcategory');
+Route::post('/updateprogramcategory/{id}', [ProgramCategoriesController::class, 'updateprogramcategory'])->name('updateprogramcategory');
+
 
 
 

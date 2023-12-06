@@ -43,13 +43,6 @@ class ProgramCategoriesController extends Controller
     public function getprogram(){
         $data = Programs::with(['ProgramCategories', 'instructors'])->get();
 
-        // $programData = $data->map(function ($program) {
-        //     return [
-        //         'program' => $program,
-        //         // 'image' => asset('storage/images/' . $program->image)
-        //     ];
-        // });
-
         return response()->json([
             'programs' => $data,
 
@@ -64,6 +57,33 @@ class ProgramCategoriesController extends Controller
         ]);
     }
 
+
+    public function updateprogramcategory(Request $request, $id)
+    {
+
+        $data = Validator::make($request->all(), [
+            'title' => 'required|string',
+
+        ]);
+
+        if ($data->fails()) {
+            return response()->json(['errors' => $data->errors()], 422);
+        }
+
+        $foundCategory = ProgramCategories::find($id);
+
+        if (!$foundCategory) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundCategory->update([
+            'title' => $request->input('title'),
+        ]);
+
+
+        return response()->json(['message' => 'Category updated successfully']);
+
+    }
 
 
 }
