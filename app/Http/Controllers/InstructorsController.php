@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class InstructorsController extends Controller
 {
+    
     public function createinstructor(Request $request){
 
         $data = Validator::make($request->all(),[
