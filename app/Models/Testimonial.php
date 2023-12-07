@@ -24,4 +24,7 @@ class Testimonial extends Model
     public function getImageUrlAttribute(){
         return asset('storage/images/' . $this->image);
     }
+
+    protected $table = 'testimonial';
+
 }

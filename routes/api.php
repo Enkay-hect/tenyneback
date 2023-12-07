@@ -9,6 +9,7 @@ use App\Http\Controllers\planFeaturesController;
 use App\Http\Controllers\plansController;
 use App\Http\Controllers\ProgramCategoriesController;
 use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\TestimonialController;
 use App\Models\Programs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -73,13 +74,14 @@ Route::post('/updateprogram/{id}', [ProgramsController::class, 'updateprogram'])
 
 
 
-
-
 Route::post('/createinstructor', [InstructorsController::class, 'createinstructor'])->name('createinstructor');
 Route::get('/getinstructor', [InstructorsController::class, 'getinstructor'])->name('getinstructor');
 Route::post('/updateinstructor/{id}', [InstructorsController::class, 'updateinstructor'])->name('updateinstructor');
 Route::delete('/deleteinstructor/{id}', [InstructorsController::class, 'deleteinstructor'])->name('deleteinstructor');
 
 
-
+Route::post('/createtestimonial', [TestimonialController::class,'createtestimonial'])->name('createtestimonial');
+Route::get('gettestimonial', [TestimonialController::class,  'gettestimonial'])->name('gettestimonial');
+Route::post('updatetestimonial/{id}', [TestimonialController::class,  'updatetestimonial'])->name('updatetestimonial');
+Route::delete('/deletetestimonial/{id}', [TestimonialController::class, 'deletetestimonial'])->name('deletetestimonial');
 

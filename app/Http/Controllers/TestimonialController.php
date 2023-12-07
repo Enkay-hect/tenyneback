@@ -13,7 +13,7 @@ class TestimonialController extends Controller
                 'name'          => 'required',
                 'role'          => 'string',
                 'description'   => 'string',
-                'image'         => 'sometime|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'image'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
 
@@ -41,13 +41,73 @@ class TestimonialController extends Controller
 
     public function create(array $data, $fileName){
         
-        $prog = Testimonial::create([
+        Testimonial::create([
           'name'        => $data['name'],
           'role'        => $data['role'],
           'description' => $data['description'],
           'image'        =>  $fileName,
 
         ]);
+
+    }
+
+
+    public function gettestimonial(){
+        $data = Testimonial::all();
+
+        return response()->json([
+            'programs' => $data,
+        ]);
+    }
+
+
+    public function updatetestimonial(Request $request, $id){
+
+        $data = Validator::make($request->all(), [ 
+            'name'          => 'required',
+            'role'          => 'string',
+            'description'   => 'string',
+            'image'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    ]   );
+        
+        if($data->fails()){
+            return response()->json([
+                'message'=> $data->messages()
+            ], 422);
+        }
+
+        $foundTestimonial = Testimonial::find($id);
+
+        if(!$foundTestimonial){
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundTestimonial->update([
+            'name' => $request->input('name'),
+            'role'=> $request->input('role'),
+            'description'=> $request->input('description'),
+        ]);
+
+        if($request->hasFile('image')){
+            $fileName = time() . '.' . $request->file('image')->extension();
+            $request->file('image')->storeAs('public/images', $fileName);
+
+            $foundTestimonial->update(['image'=> $fileName]);
+        }
+    }
+
+    public function deletetestimonial($id){
+
+        $foundTestimonial = Testimonial::where(['id' => $id])->first();
+
+        if (!$foundTestimonial)
+        {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundTestimonial->delete();
+
+        return response()->json(['message' => 'role deleted']);
 
     }
 }
