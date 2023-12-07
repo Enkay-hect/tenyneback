@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Talentpipeline extends Model
 {
@@ -33,5 +34,16 @@ class Talentpipeline extends Model
         $enddate    =   Carbon::parse($this->end_date);
 
         return $enddate->diffInMonths($startdate);
+    }
+
+
+    public function role(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            JobRole::class,
+            'role_talent_pivot',
+            'talentpipeline_id',
+            'role_id',
+        )->withTimestamps();
     }
 }

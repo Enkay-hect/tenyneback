@@ -51,5 +51,15 @@ class JobRole extends Model
         )->withTimestamps();
     }
 
+    public function talentpipeline(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            Talentpipeline::class,
+            'role_talent_pivot',
+            'role_id',
+            'talentpipeline_id'
+        )->withTimestamps();
+    }
+
 
 }

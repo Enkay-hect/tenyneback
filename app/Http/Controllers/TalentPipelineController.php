@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobRole;
 use App\Models\Talentpipeline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -42,7 +43,9 @@ class TalentPipelineController extends Controller
     }
 
     public function create(array $data){
-            Talentpipeline::create([
+        $findRoldId = JobRole::where(['id' => $data['id']])->first();
+
+         $tal =   Talentpipeline::create([
                 'company'                   => $data['company'], 
                 'contact'                   => $data['contact'], 
                 'email'                     => $data['email'], 
@@ -58,13 +61,16 @@ class TalentPipelineController extends Controller
                 'payment'                   => $data['payment'],
                 'additional_requirement'    => $data['additional_requirement'],
             ]);
+
+            $tal->role()->attach($findRoldId);
+
     }
 
 
 
 
     public function gettalentpipeline(){
-        $data = Talentpipeline::all();
+        $data = Talentpipeline::with(['role'])->get();
 
         return response()->json([
             'pipeline' =>    $data
