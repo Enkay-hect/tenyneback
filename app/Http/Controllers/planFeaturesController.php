@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlanFeature;
-use App\Models\plans;
+use App\Models\Plans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,7 +26,7 @@ class planFeaturesController extends Controller
    }
 
    public function create(array $data){
-    // $planId = plans::where(['id' => $data['id']])->first();
+    // $planId = Plans::where(['id' => $data['id']])->first();
 
         // $planDescription =
         PlanFeature::create([
