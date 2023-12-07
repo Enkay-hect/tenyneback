@@ -25,6 +25,6 @@ class Testimonial extends Model
         return asset('storage/images/' . $this->image);
     }
 
-    protected $table = 'testimonial';
+    // protected $table = 'testimonial';
 
 }
