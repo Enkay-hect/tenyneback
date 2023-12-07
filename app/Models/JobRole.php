@@ -44,10 +44,10 @@ class JobRole extends Model
     public function plan(): BelongsToMany
     {
         return $this->BelongsToMany(
-            Plans::class,
+            Plan::class,
             'plan_role_pivot',
-    'role_id',
-    'plan_id'
+            'role_id',
+            'plan_id'
         )->withTimestamps();
     }
 

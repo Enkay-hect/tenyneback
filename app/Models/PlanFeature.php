@@ -21,10 +21,10 @@ class PlanFeature extends Model
     public function plans(): BelongsToMany
     {
         return $this->BelongsToMany(
-            Plans::class,
+            Plan::class,
             'plan_feature_pivot',
-    'plan_feature_id',
-    'plan_id'
+            'plan_feature_id',
+            'plan_id'
         )->withTimestamps();
     }
 

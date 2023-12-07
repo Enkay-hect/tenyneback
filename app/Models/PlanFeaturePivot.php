@@ -12,7 +12,7 @@ class PlanFeaturePivot extends Pivot
     use HasFactory;
 
     public function plan() {
-        return $this->belongsTo(plans::class, 'id');
+        return $this->belongsTo(Plan::class, 'id');
       }
 
       public function planfeature() {

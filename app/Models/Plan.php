@@ -36,8 +36,8 @@ class Plan extends Model
         return $this->BelongsToMany(
             PlanFeature::class,
             'plan_feature_pivot',
-    'plan_id',
-    'plan_feature_id'
+            'plan_id',
+            'plan_feature_id'
         )->withTimestamps();
     }
 
@@ -46,8 +46,8 @@ class Plan extends Model
         return $this->BelongsToMany(
             JobRole::class,
             'plan_role_pivot',
-    'plan_id',
-    'role_id'
+            'plan_id',
+            'role_id'
         )->withTimestamps();
     }
 }
