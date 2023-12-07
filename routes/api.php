@@ -9,6 +9,7 @@ use App\Http\Controllers\planFeaturesController;
 use App\Http\Controllers\plansController;
 use App\Http\Controllers\ProgramCategoriesController;
 use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\TalentPipelineController;
 use App\Http\Controllers\TestimonialController;
 use App\Models\Programs;
 use Illuminate\Http\Request;
@@ -84,4 +85,10 @@ Route::post('/createtestimonial', [TestimonialController::class,'createtestimoni
 Route::get('gettestimonial', [TestimonialController::class,  'gettestimonial'])->name('gettestimonial');
 Route::post('updatetestimonial/{id}', [TestimonialController::class,  'updatetestimonial'])->name('updatetestimonial');
 Route::delete('/deletetestimonial/{id}', [TestimonialController::class, 'deletetestimonial'])->name('deletetestimonial');
+
+
+Route::post('/createpipeline', [TalentPipelineController::class,'createpipeline'])->name('createpipeline');
+Route::get('/gettalentpipeline', [TalentPipelineController::class, 'gettalentpipeline'])->name('gettalentpipeline');
+Route::post('updatetalentpipeline/{id}', [TalentPipelineController::class,  'updatetalentpipeline'])->name('updatetalentpipeline');
+Route::delete('/deletetalentpipeline/{id}', [TalentPipelineController::class, 'deletetalentpipeline'])->name('deletetalentpipeline');
 

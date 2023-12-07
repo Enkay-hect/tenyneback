@@ -50,8 +50,8 @@ class Programs extends Model
         return $this->belongsToMany(
             ProgramCategories::class,
             'program_categories_pivot',
-    'programs_id',
-    'program_categories_id',
+            'programs_id',
+            'program_categories_id',
 
         )->withTimestamps();
 
