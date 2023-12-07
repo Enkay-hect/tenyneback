@@ -62,4 +62,15 @@ class JobRole extends Model
     }
 
 
+    public function customplan(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            CustomPlan::class,
+            'customplan_role_pivot',
+            'role_id',
+            'customplan_id'
+        )->withTimestamps();
+    }
+
+
 }

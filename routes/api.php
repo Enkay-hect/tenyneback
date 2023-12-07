@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\caseStudiesController;
+use App\Http\Controllers\CustomPlanController;
 use App\Http\Controllers\generalContentController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\jobRolesCategoryController;
@@ -91,4 +92,9 @@ Route::post('/createpipeline', [TalentPipelineController::class,'createpipeline'
 Route::get('/gettalentpipeline', [TalentPipelineController::class, 'gettalentpipeline'])->name('gettalentpipeline');
 Route::post('updatetalentpipeline/{id}', [TalentPipelineController::class,  'updatetalentpipeline'])->name('updatetalentpipeline');
 Route::delete('/deletetalentpipeline/{id}', [TalentPipelineController::class, 'deletetalentpipeline'])->name('deletetalentpipeline');
+
+Route::post('/createcustomplan', [CustomPlanController::class,'createcustomplan'])->name('createcustomplan');
+Route::get('/getcustomplan', [CustomPlanController::class, 'getcustomplan'])->name('getcustomplan');
+Route::post('updatecustomplan/{id}', [CustomPlanController::class,  'updatecustomplan'])->name('updatecustomplan');
+Route::delete('/deletecustomplan/{id}', [CustomPlanController::class, 'deletecustomplan'])->name('deletecustomplan');
 
