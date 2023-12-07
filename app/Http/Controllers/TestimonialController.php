@@ -56,7 +56,7 @@ class TestimonialController extends Controller
         $data = Testimonial::all();
 
         return response()->json([
-            'programs' => $data,
+            'testimonials' => $data,
         ]);
     }
 
