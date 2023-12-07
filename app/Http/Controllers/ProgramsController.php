@@ -160,7 +160,7 @@ class ProgramsController extends Controller
         }
 
 
-        return response()->json([$foundProgram, 'message' => 'Program updated successfully']);
+        return response()->json(['message' => 'Program updated successfully']);
 
     }
 

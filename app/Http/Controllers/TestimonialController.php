@@ -94,6 +94,9 @@ class TestimonialController extends Controller
 
             $foundTestimonial->update(['image'=> $fileName]);
         }
+
+        return response()->json(['message' => 'Testimonial updated successfully']);
+
     }
 
     public function deletetestimonial($id){
@@ -107,7 +110,7 @@ class TestimonialController extends Controller
 
         $foundTestimonial->delete();
 
-        return response()->json(['message' => 'role deleted']);
+        return response()->json(['message' => 'Testimonial deleted']);
 
     }
 }
