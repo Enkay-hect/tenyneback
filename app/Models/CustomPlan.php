@@ -36,6 +36,16 @@ class CustomPlan extends Model
         return $enddate->diffInMonths($startdate);
     }
 
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['start_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    }
+
+    public function setEndDateAttribute($value)
+    {
+        $this->attributes['end_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    }
+
 
     public function role(): BelongsToMany  
     {
