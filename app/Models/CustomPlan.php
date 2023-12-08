@@ -21,6 +21,7 @@ class CustomPlan extends Model
      protected $fillable = [
         'company', 'contact', 'email', 'phone_number', 'role', 'description', 'number_of_hires',
          'start_date', 'end_date', 'location', 'mode', 'budget', 'payment', 'additional_requirement',
+         'role_id', 'plan_id'
 
     ];
 
@@ -36,24 +37,52 @@ class CustomPlan extends Model
         return $enddate->diffInMonths($startdate);
     }
 
-    public function setStartDateAttribute($value)
-    {
-        $this->attributes['start_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
-    }
+   
+    
+    
+    // public function setStartDateAttribute($value)
+    // {
+    //     $this->attributes['start_date'] = Carbon::createFromFormat('m-d-Y', $value)->format('Y-m-d');
+    // }
 
-    public function setEndDateAttribute($value)
-    {
-        $this->attributes['end_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
-    }
+    // public function setEndDateAttribute($value)
+    // {
+    //     $this->attributes['end_date'] = Carbon::createFromFormat('m-d-Y', $value)->format('Y-m-d');
+    // }
 
 
-    public function role(): BelongsToMany  
+    public function roles(): BelongsToMany  
     {
         return $this->belongsToMany(
             JobRole::class,
             'customplan_role_pivot',
-            'customplan_id',
             'role_id',
+            'plan_id'
+        )->withTimestamps();
+    }
+
+
+    public function plans(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            Plan::class,
+            'customplan_role_pivot',
+            'plan_id',
+            'role_id',
+            
+        )->withTimestamps();
+    }
+
+    public function submission(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            CustomPlan::class,
+            'customplan_role_pivot',
+            'submission_id',
+            'id'
         )->withTimestamps();
     }
 }
+
+
+

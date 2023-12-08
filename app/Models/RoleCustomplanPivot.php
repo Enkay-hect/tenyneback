@@ -16,4 +16,8 @@ class RoleCustomplanPivot extends Model
     public function customplan() {
         return $this->belongsTo(CustomPlan::class, 'id');
     }
+
+    public function plan() {
+        return $this->belongsTo(Plan::class, 'id');
+    }
 }

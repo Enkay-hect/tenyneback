@@ -46,4 +46,14 @@ class Talentpipeline extends Model
             'role_id',
         )->withTimestamps();
     }
+
+    public function plan(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            Plan::class,
+            'role_talent_pivot',
+            'talentpipeline_id',
+            'plan_id',
+        )->withTimestamps();
+    }
 }

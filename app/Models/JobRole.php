@@ -68,7 +68,7 @@ class JobRole extends Model
             CustomPlan::class,
             'customplan_role_pivot',
             'role_id',
-            'customplan_id'
+            'submission_id'
         )->withTimestamps();
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomPlan;
 use App\Models\JobRole;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +16,6 @@ class CustomPlanController extends Controller
             'contact'                   => 'string', 
             'email'                     => 'string', 
             'phone_number'              => 'string', 
-            'role'                      => 'string', 
             'description'               => 'string',
             'number_of_hires'           => 'string',
             'start_date'                => 'string',
@@ -43,14 +43,15 @@ class CustomPlanController extends Controller
     }
 
     public function create(array $data){
-        $findRoldId = JobRole::where(['id' => $data['id']])->first();
+        $findRoleId = JobRole::where(['id' => $data['role_id']])->first();
+
+        $findPlanId = Plan::where(['id' => $data['plan_id']])->first();
 
          $tal =   CustomPlan::create([
                 'company'                   => $data['company'], 
                 'contact'                   => $data['contact'], 
                 'email'                     => $data['email'], 
                 'phone_number'              => $data['phone_number'], 
-                'role'                      => $data['role'], 
                 'description'               => $data['description'],
                 'number_of_hires'           => $data['number_of_hires'],
                 'start_date'                => $data['start_date'],
@@ -60,17 +61,18 @@ class CustomPlanController extends Controller
                 'budget'                    => $data['budget'],
                 'payment'                   => $data['payment'],
                 'additional_requirement'    => $data['additional_requirement'],
+                'role_id'                   => $data['role_id'],
+                'plan_id'                   => $data['plan_id']
             ]);
 
-            $tal->role()->attach($findRoldId);
-
+        
     }
 
 
 
 
     public function getcustomplan(){
-        $data = CustomPlan::with(['role'])->get();
+        $data = CustomPlan::with(['role', 'plan'])->get();
 
         return response()->json([
             'pipeline' =>    $data

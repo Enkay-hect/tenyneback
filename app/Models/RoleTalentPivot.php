@@ -16,4 +16,8 @@ class RoleTalentPivot extends Model
       public function talentpipeline() {
           return $this->belongsTo(Talentpipeline::class, 'id');
       }
+
+      public function plan() {
+        return $this->belongsTo(Plan::class, 'id');
+    }
 }

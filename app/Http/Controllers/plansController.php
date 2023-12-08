@@ -35,7 +35,7 @@ class plansController extends Controller
 
      public function create(array $data)
      {
-        $findRoldId = JobRole::where(['id' => $data['id']])->first();
+        $findRoldId = JobRole::where(['id' => $data['role_id']])->first();
 
         $plan = Plan::create([
                         'plan_name'             => $data['plan_name'],

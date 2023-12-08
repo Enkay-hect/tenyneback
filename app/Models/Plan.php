@@ -48,6 +48,17 @@ class Plan extends Model
             'plan_role_pivot',
             'plan_id',
             'role_id'
+        )->withTimestamps(); 
+    }
+
+
+    public function customplan(): BelongsToMany  
+    {
+        return $this->belongsToMany(
+            CustomPlan::class,
+            'customplan_role_pivot',
+            'plan_id',
+            'submission_id'
         )->withTimestamps();
     }
 }
