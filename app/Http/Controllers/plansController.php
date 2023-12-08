@@ -15,7 +15,6 @@ class plansController extends Controller
 
         $request->validate([
                  'plan_name'          => 'required',
-                 'description'        => 'string',
                  'extra_details'      => 'string',
                  'billing_duration'   => 'required',
                  'price'              => 'required',
@@ -97,10 +96,10 @@ class plansController extends Controller
     public function updateplan(Request $request, $id){
         $data = Validator::make($request->all(), [
             'plan_name'          => 'required',
-            'description'        => 'string',
             'extra_details'      => 'string',
             'billing_duration'   => 'required',
             'price'              => 'required',
+            'annual_billing'     => 'string',
             'features'           => 'required|string',
         ]);
 
@@ -116,9 +115,9 @@ class plansController extends Controller
 
         $foundPlan->update([
             'plan_name' => $request->input('plan_name'),
-            'description' => $request->input('description'),
             'extra_details' => $request->input('extra_details'),
             'billing_duration' => $request->input('billing_duration'),
+            'annual_billing'    => $request->input('annual_billing'),
             'price' => $request->input('price'),
             'features' => [$request->input('features')],
         ]);
