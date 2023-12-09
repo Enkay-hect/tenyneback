@@ -41,7 +41,7 @@ class plansController extends Controller
                         'extra_details'         => $data['extra_details'],
                         'billing_duration'      => $data['billing_duration'],
                         'price'                 => $data['price'],
-                        'features'              => [$data['features']],
+                        'features'              => json_decode($data['features']),
                         'annual_billing'        => $data['annual_billing']
                     ]);
 
@@ -85,7 +85,7 @@ class plansController extends Controller
         // } else {
         //     $data = Plan::with(['planFeature'])->get();
         // }
-        
+
         $data = Plan::with(['planFeature', 'role'])->get();
 
 

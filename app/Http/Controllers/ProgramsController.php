@@ -15,6 +15,7 @@ class ProgramsController extends Controller
 
             'programTitle'     => 'string',
             'image'            => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'secondary_image'   => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'rating'           => 'string',
             'reviews'          => 'string',
             'subtitle'         => 'string|sometimes',
@@ -41,10 +42,14 @@ class ProgramsController extends Controller
         }
 
         $fileName = time() . '.' . $request->image->extension();
+        $secondaryFile = time() . '.' . $request->image->extension();
+
         $request->image->storeAs('public/images', $fileName);
+        $request->image->storeAs('public/images', $secondaryFile);
+
 
         $data = $request->post();
-        $this->create($data, $fileName);
+        $this->create($data, $fileName, $secondaryFile);
 
 
         return response()->json([
@@ -56,26 +61,28 @@ class ProgramsController extends Controller
 
 
 
-    public function create(array $data, $fileName){
+    public function create(array $data, $fileName, $secondaryFile){
         $findProgramCategory = ProgramCategories::where(['id' => $data['id']])->first();
         $findProgramCategoryId = ProgramCategories::find($findProgramCategory)->first();
 
+        
         $prog = Programs::create([
             'programTitle'     => $data['programTitle'],
             'image'            => $fileName,
+            'secondary_image'   =>$secondaryFile,
             'rating'           => $data['rating'],
             'reviews'          => $data['reviews'],
             'subtitle'         => $data['subtitle'],
             'description'      => $data['description'],
-            'features'         => [$data['features']],
+            'features'         => json_decode($data['features']),
             'start_date'       => $data['start_date'],
             'end_date'         => $data['end_date'],
             'price'            => $data['price'],
-            'learning_scheme'  => [$data['learning_scheme']],
+            'learning_scheme'  => json_decode($data['learning_scheme']),
             'why'              => $data['why'],
-            'prerequisite'     => [$data['prerequisite']],
-            'best_fit'         => [$data['best_fit']],
-            'program_flow'     => [$data['program_flow']],
+            'prerequisite'     => json_decode($data['prerequisite']),
+            'best_fit'         => json_decode($data['best_fit']),
+            'program_flow'     => json_decode($data['program_flow']),
            'type'              => $data['type'],
         ]);
 

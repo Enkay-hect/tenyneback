@@ -17,7 +17,7 @@ class Programs extends Model
      * @return response()
      */
     protected $fillable = [
-        'programTitle', 'image', 'rating', 'reviews', 'subtitle', 'description', 'features', 'start_date',
+        'programTitle', 'image','secondary_image', 'rating', 'reviews', 'subtitle', 'description', 'features', 'start_date',
         'end_date', 'price', 'learning_scheme', 'why', 'prerequisite', 'best_fit', 'program_flow', 'type'
     ];
 
@@ -30,11 +30,15 @@ class Programs extends Model
     ];
 
     protected $appends = [
-        'image_url', 'duration'
+        'image_url', 'secondary_image_url', 'duration'
     ];
 
     public function getImageUrlAttribute(){
         return asset('storage/images/' . $this->image);
+    }
+
+    public function getSecondaryImageUrlAttribute(){
+        return asset('storage/images/' . $this->secondary_image);
     }
 
     public function getDurationAttribute(){
