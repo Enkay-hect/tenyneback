@@ -93,8 +93,6 @@ class ProgramCategoriesController extends Controller
             return response()->json(['error' => 'Not found'], 404);
         }
 
-        $foundCat->instructors()->detach();
-
         $foundCat->delete();
 
         return response()->json(['message' => 'Category deleted']);
