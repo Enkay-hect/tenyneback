@@ -17,8 +17,16 @@ class ProgramInstructors extends Model
      * @return response()
      */
     protected $fillable = [
-        'instructor_name', 'instructor_details'
+        'instructor_name', 'instructor_details', 'image'
     ];
+
+    protected $appends = [
+        'image_url'
+    ];
+
+    public function getImageUrlAttribute(){
+        return asset('storage/images/' . $this->image);
+    }
 
 
     public function Programs(): BelongsToMany

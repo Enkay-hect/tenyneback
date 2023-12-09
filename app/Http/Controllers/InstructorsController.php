@@ -15,6 +15,7 @@ class InstructorsController extends Controller
         $data = Validator::make($request->all(),[
             'instructor_name'       => 'string',
             'instructor_details'    => 'string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
 
@@ -23,25 +24,30 @@ class InstructorsController extends Controller
                 "message" => $data->messages()
             ],400);
         }
+        $fileName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/images', $fileName);
 
 
         $data = $request->post();
-        $this->create($data);
+        $this->create($data, $fileName);
 
 
         return response()->json([
             'data' => $data,
+            'file'  => $fileName
         ],200);
 
     }
 
-    public function create(array $data){
+    public function create(array $data, $fileName){
         $findProgram = Programs::where(['id' => $data['id']])->first();
         $findProgramId = Programs::find($findProgram)->first();
 
         $inst = ProgramInstructors::create([
             'instructor_name'         => $data['instructor_name'],
             'instructor_details'      => $data['instructor_details'],
+            'image' => $fileName,
+
         ]);
 
         $inst->Programs()->attach($findProgramId);
