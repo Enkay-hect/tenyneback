@@ -86,7 +86,7 @@ class ProgramCategoriesController extends Controller
     }
 
 
-    public function deleteprogramcategory(){
+    public function deleteprogramcategory($id){
         $foundCat = ProgramCategories::where(['id' => $id])->first();
 
         if (!$foundCat) {
