@@ -28,7 +28,7 @@ class ProgramsController extends Controller
             'prerequisite'     => 'string',
             'best_fit'         => 'string',
             'program_flow'     => 'string',
-         //   'type'              => 'string'
+            'type'             => 'string'
 
 
         ]);
