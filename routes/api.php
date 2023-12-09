@@ -74,6 +74,9 @@ Route::get('/getprogramcategory', [ProgramCategoriesController::class, 'getprogr
 Route::post('/updateprogramcategory/{id}', [ProgramCategoriesController::class, 'updateprogramcategory'])->name('updateprogramcategory');
 Route::post('/updateprogram/{id}', [ProgramsController::class, 'updateprogram'])->name('updateprogram');
 
+Route::delete('/deleteprogramcategory/{id}', [ProgramCategoriesController::class, 'deleteprogramcategory'])->name('deleteprogramcategory');
+
+
 
 
 Route::post('/createinstructor', [InstructorsController::class, 'createinstructor'])->name('createinstructor');

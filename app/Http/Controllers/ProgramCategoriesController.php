@@ -86,6 +86,22 @@ class ProgramCategoriesController extends Controller
     }
 
 
+    public function deleteprogramcategory(){
+        $foundCat = ProgramCategories::where(['id' => $id])->first();
+
+        if (!$foundCat) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        $foundCat->instructors()->detach();
+
+        $foundCat->delete();
+
+        return response()->json(['message' => 'role deleted']);
+    }  
+    
+
+
 }
 
 

@@ -26,7 +26,7 @@ class ProgramsController extends Controller
             'learning_scheme'  => 'string',
             'why'              => 'string|sometimes',
             'prerequisite'     => 'string',
-            'best_fit'         => 'string',
+            'best_fit'         => 'string', 
             'program_flow'     => 'string',
             'type'             => 'string'
 
