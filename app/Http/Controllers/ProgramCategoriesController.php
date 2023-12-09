@@ -97,7 +97,7 @@ class ProgramCategoriesController extends Controller
 
         $foundCat->delete();
 
-        return response()->json(['message' => 'role deleted']);
+        return response()->json(['message' => 'Category deleted']);
     }  
     
 
