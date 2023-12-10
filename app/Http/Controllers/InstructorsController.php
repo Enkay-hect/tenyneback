@@ -40,9 +40,7 @@ class InstructorsController extends Controller
     }
 
     public function create(array $data, $fileName){
-        $findProgram = Programs::where(['id' => $data['id']])->first();
-        $findProgramId = Programs::find($findProgram)->first();
-
+        
         $inst = ProgramInstructors::create([
             'instructor_name'         => $data['instructor_name'],
             'instructor_details'      => $data['instructor_details'],
@@ -50,7 +48,11 @@ class InstructorsController extends Controller
 
         ]);
 
-        $inst->Programs()->attach($findProgramId);
+        if(!empty($data['program_id'])){
+            $findProgram = Programs::where(['id' => $data['id']])->first();
+            $findProgramId = Programs::find($findProgram)->first();
+            $inst->Programs()->attach($findProgramId);        }
+
 
     }
 
@@ -91,11 +93,9 @@ class InstructorsController extends Controller
 
         $foundInstructor->delete();
 
-        return response()->json(['message' => 'role deleted']);
+        return response()->json(['message' => 'Instructor deleted']);
 
     }
-
-
 
 
     public function getinstructor(){

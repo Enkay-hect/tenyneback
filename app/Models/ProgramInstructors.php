@@ -35,7 +35,7 @@ class ProgramInstructors extends Model
             Programs::class,
             'program_instructors_pivot',
             'program_instructors_id',
-    'programs_id',
+            'programs_id',
         )->withTimestamps();
     }
 

@@ -16,7 +16,7 @@ class ProgramInstructorsPivot extends Pivot
         return $this->belongsTo(Programs::class, 'id');
     }
 
-    public function programinstructors() {
+    public function instructors() {
 
         return $this->belongsTo(ProgramInstructors::class, 'id');
     }

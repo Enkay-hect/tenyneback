@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use App\Models\ProgramCategories;
+use App\Models\ProgramInstructors;
 use App\Models\Programs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,9 +64,8 @@ class ProgramsController extends Controller
 
 
     public function create(array $data, $fileName, $secondaryFile){
-        $findProgramCategory = ProgramCategories::where(['id' => $data['id']])->first();
+        $findProgramCategory = ProgramCategories::where(['id' => $data['category_id']])->first();
         $findProgramCategoryId = ProgramCategories::find($findProgramCategory)->first();
-
         
         $prog = Programs::create([
             'programTitle'     => $data['programTitle'],
@@ -78,7 +79,7 @@ class ProgramsController extends Controller
             'start_date'       => $data['start_date'],
             'end_date'         => $data['end_date'],
             'price'            => $data['price'],
-            'learning_scheme'  => json_decode($data['learning_scheme']),
+            'learning_scheme'  => ($data['learning_scheme']),
             'why'              => $data['why'],
             'prerequisite'     => json_decode($data['prerequisite']),
             'best_fit'         => json_decode($data['best_fit']),
@@ -86,7 +87,19 @@ class ProgramsController extends Controller
            'type'              => $data['type'],
         ]);
 
-        $prog->ProgramCategories()->attach($findProgramCategoryId);
+            $prog->ProgramCategories()->attach($findProgramCategoryId);
+
+            if(!empty($data['faq_id'])){
+                $findFaq = Faq::where(['id' => $data['faq_id']])->first();
+                $findFaqId = Faq::find($findFaq)->first();
+                $prog->faq()->attach($findFaqId);
+            }
+
+            if(!empty($data['instructor_id'])){
+                $findInstructor = ProgramInstructors::where(['id' => $data['instructor_id']])->first();
+                $findInstructorId = ProgramInstructors::find($findInstructor)->first();
+                $prog->instructors()->attach($findInstructorId);
+            }
     }
 
 
@@ -102,7 +115,7 @@ class ProgramsController extends Controller
 
         $foundProgram->delete();
 
-        return response()->json(['message' => 'role deleted']);
+        return response()->json(['message' => 'Program deleted']);
     }
 
 
@@ -147,15 +160,15 @@ class ProgramsController extends Controller
             'reviews'          => $request->input('reviews'),
             'subtitle'         => $request->input('subtitle'),
             'description'      => $request->input('description'),
-            'features'         => $request->input('features'),
+            'features'         => json_decode($request->input('features')),
             'start_date'       => $request->input('start_date'),
             'end_date'         => $request->input('end_date'),
             'price'            => $request->input('price'),
-            'learning_scheme'  => $request->input('learning_scheme'),
+            'learning_scheme'  => json_decode($request->input('learning_scheme')),
             'why'              => $request->input('why'),
-            'prerequisite'     => $request->input('prerequisite'),
-            'best_fit'         => [$request->input('best_fit')],
-            'program_flow'     => $request->input('program_flow'),
+            'prerequisite'     => json_decode($request->input('prerequisite')),
+            'best_fit'         => json_decode($request->input('best_fit')),
+            'program_flow'     => json_decode($request->input('program_flow')),
             'type'             => $request->input('type'),
         ]);
 

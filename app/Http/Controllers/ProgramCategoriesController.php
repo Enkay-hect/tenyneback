@@ -41,7 +41,7 @@ class ProgramCategoriesController extends Controller
 
 
     public function getprogram(){
-        $data = Programs::with(['ProgramCategories', 'instructors'])->get();
+        $data = Programs::with(['ProgramCategories', 'instructors', 'faq'])->get();
 
         return response()->json([
             'programs' => $data,
