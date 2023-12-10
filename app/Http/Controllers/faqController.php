@@ -42,7 +42,7 @@ class faqController extends Controller
 
 
     public function updatefaq(Request $request, $id){
-        $data = Faq::make($request->all(), [
+        $data = Validator::make($request->all(), [
             'question'              => 'string',
             'answer'                => 'string',
             'type'                  => 'string'
