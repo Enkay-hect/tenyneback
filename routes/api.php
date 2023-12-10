@@ -102,8 +102,8 @@ Route::delete('/deletecustomplan/{id}', [CustomPlanController::class, 'deletecus
 
 
 Route::post('/createfaq', [faqController::class, 'createfaq'])->name('createfaq');
-Route::post('/getfaq', [faqController::class, 'getfaq'])->name('getfaq');
+Route::get('/getfaq', [faqController::class, 'getfaq'])->name('getfaq');
 Route::post('/updatefaq/{id}', [faqController::class, 'updatefaq'])->name('updatefaq');
-Route::post('/deletefaq/{id}', [faqController::class, 'deletefaq'])->name('deletefaq');
+Route::delete('/deletefaq/{id}', [faqController::class, 'deletefaq'])->name('deletefaq');
 
 
