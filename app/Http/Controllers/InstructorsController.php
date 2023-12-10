@@ -99,7 +99,6 @@ class InstructorsController extends Controller
 
 
     public function getinstructor(){
-        // dd('sfasfaf');
         $data = ProgramInstructors::all();
 
 
@@ -109,7 +108,6 @@ class InstructorsController extends Controller
 
         return response()->json([
             'instructors' => $data
-            // 'asfsafsafsadfdsa'
         ]);
     }
 

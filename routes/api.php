@@ -74,10 +74,7 @@ Route::delete('/deleteprogram/{id}', [ProgramsController::class, 'deleteprogram'
 Route::get('/getprogramcategory', [ProgramCategoriesController::class, 'getprogramcategory'])->name('getprogramcategory');
 Route::post('/updateprogramcategory/{id}', [ProgramCategoriesController::class, 'updateprogramcategory'])->name('updateprogramcategory');
 Route::post('/updateprogram/{id}', [ProgramsController::class, 'updateprogram'])->name('updateprogram');
-
 Route::delete('/deleteprogramcategory/{id}', [ProgramCategoriesController::class, 'deleteprogramcategory'])->name('deleteprogramcategory');
-
-
 
 
 Route::post('/createinstructor', [InstructorsController::class, 'createinstructor'])->name('createinstructor');
@@ -97,10 +94,16 @@ Route::get('/gettalentpipeline', [TalentPipelineController::class, 'gettalentpip
 Route::post('updatetalentpipeline/{id}', [TalentPipelineController::class,  'updatetalentpipeline'])->name('updatetalentpipeline');
 Route::delete('/deletetalentpipeline/{id}', [TalentPipelineController::class, 'deletetalentpipeline'])->name('deletetalentpipeline');
 
+
 Route::post('/createcustomplan', [CustomPlanController::class,'createcustomplan'])->name('createcustomplan');
 Route::get('/getcustomplan', [CustomPlanController::class, 'getcustomplan'])->name('getcustomplan');
 Route::post('updatecustomplan/{id}', [CustomPlanController::class,  'updatecustomplan'])->name('updatecustomplan');
 Route::delete('/deletecustomplan/{id}', [CustomPlanController::class, 'deletecustomplan'])->name('deletecustomplan');
 
-Route::post('/createFaq', [faqController::class, 'createFaq'])->name('createFaq');
+
+Route::post('/createfaq', [faqController::class, 'createfaq'])->name('createfaq');
+Route::post('/getfaq', [faqController::class, 'getfaq'])->name('getfaq');
+Route::post('/updatefaq/{id}', [faqController::class, 'updatefaq'])->name('updatefaq');
+Route::post('/deletefaq/{id}', [faqController::class, 'deletefaq'])->name('deletefaq');
+
 
