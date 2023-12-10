@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\caseStudiesController;
 use App\Http\Controllers\CustomPlanController;
+use App\Http\Controllers\faqController;
 use App\Http\Controllers\generalContentController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\jobRolesCategoryController;
@@ -100,4 +101,6 @@ Route::post('/createcustomplan', [CustomPlanController::class,'createcustomplan'
 Route::get('/getcustomplan', [CustomPlanController::class, 'getcustomplan'])->name('getcustomplan');
 Route::post('updatecustomplan/{id}', [CustomPlanController::class,  'updatecustomplan'])->name('updatecustomplan');
 Route::delete('/deletecustomplan/{id}', [CustomPlanController::class, 'deletecustomplan'])->name('deletecustomplan');
+
+Route::post('/createFaq', [faqController::class, 'createFaq'])->name('createFaq');
 
