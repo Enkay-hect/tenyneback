@@ -24,6 +24,10 @@ class faqController extends Controller
 
         $data = $request->post();
         $this->create($data);
+
+        return response()->json([
+            $data
+        ],200);
     }
 
     public function create(array $data){
