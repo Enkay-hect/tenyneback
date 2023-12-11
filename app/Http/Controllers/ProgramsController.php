@@ -79,7 +79,7 @@ class ProgramsController extends Controller
             'start_date'       => $data['start_date'],
             'end_date'         => $data['end_date'],
             'price'            => $data['price'],
-            'learning_scheme'  => ($data['learning_scheme']),
+            'learning_scheme'  => json_decode($data['learning_scheme']),
             'why'              => $data['why'],
             'prerequisite'     => json_decode($data['prerequisite']),
             'best_fit'         => json_decode($data['best_fit']),
