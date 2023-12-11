@@ -96,6 +96,19 @@ class plansController extends Controller
 
     }
 
+    public function getallplans(Request $request){
+
+         $data = Plan::with(['planFeature', 'role'])->get();
+
+
+
+         return  response()->json(
+            ['plans' => $data]
+        );
+
+
+    }    
+
 
     public function updateplan(Request $request, $id){
         $data = Validator::make($request->all(), [
