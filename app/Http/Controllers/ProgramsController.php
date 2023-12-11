@@ -93,8 +93,8 @@ class ProgramsController extends Controller
 
                 foreach (json_decode($data['faq']) as $faqData) {
                    $qna =   Faq::create([
-                            'question'  => $faqData['question'],
-                            'answer'    => $faqData['answer'],
+                            'question'  => $faqData->question,
+                            'answer'    => $faqData->answer,
                             'type'      => 'program',
                     ]);
                     $prog->faq()->attach($qna);
