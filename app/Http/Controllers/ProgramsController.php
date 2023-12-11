@@ -90,9 +90,18 @@ class ProgramsController extends Controller
             $prog->ProgramCategories()->attach($findProgramCategoryId);
 
             if(!empty($data['faq_id'])){
-                $findFaq = Faq::where(['id' => $data['faq_id']])->first();
-                $findFaqId = Faq::find($findFaq)->first();
-                $prog->faq()->attach($findFaqId);
+
+                foreach ($data['faq_id'] as $faqData) {
+                   $qna =   Faq::create([
+                            'question'  => json_decode($faqData['question']),
+                            'answer'    => json_decode($faqData['answer']),
+                            'type'      => $data['programTitle'],
+                    ]);
+                    $prog->faq()->attach($qna);
+                }
+                // $findFaq = Faq::where(['id' => $data['faq_id']])->first();
+                // $findFaqId = Faq::find($findFaq)->first();
+                // $prog->faq()->attach($findFaqId);
             }
 
             if(!empty($data['instructor_id'])){
